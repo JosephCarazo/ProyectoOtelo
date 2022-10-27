@@ -4,17 +4,38 @@
  */
 package Frm;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author Francisco
  */
 public class FrmOthello extends javax.swing.JFrame {
-
+    private int fila=12;
+    private int colum=12;
+    private JButton [][] boton;
     /**
      * Creates new form FrmOthello
      */
     public FrmOthello() {
         initComponents();
+        crearMatriz();
+    }
+     public void crearMatriz(){
+        int x=20;
+        int y=10;
+        boton=new JButton[fila][colum];
+        for (int i = 0; i <fila; i++) {
+            for (int j = 0; j <colum; j++) {
+                boton[i][j]=new JButton();
+                boton[i][j].setBounds(x, y, 50, 50);
+                
+                jPanel1.add(boton[i][j]);
+                y+=46;
+            }
+            x+=45;
+            y=10;
+        }
     }
 
     /**
@@ -34,11 +55,11 @@ public class FrmOthello extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 549, Short.MAX_VALUE)
+            .addGap(0, 631, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGap(0, 580, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -46,16 +67,16 @@ public class FrmOthello extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(26, 26, 26)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(166, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(111, 111, 111)
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -97,6 +118,10 @@ public class FrmOthello extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    
+
+    
 }

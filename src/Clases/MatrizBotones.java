@@ -5,31 +5,33 @@
 package Clases;
 
 import javax.swing.JButton;
-
 /**
  *
  * @author Francisco
  */
-public final class MatrizBotones {
+public final class MatrizBotones extends Frm.FrmOthello{
     private int fila=12;
     private int colum=12;
     private JButton [][] boton;
 
     public MatrizBotones() {
-        crearMatriz();
+//        crearMatriz();
     }
     
-    public void crearMatriz(){
-        int x=20;
-        int y=10;
-        boton=new JButton[fila][colum];
-        for (int i = 0; i <fila; i++) {
-            for (int j = 0; j <colum; j++) {
-                boton[i][j]=new JButton();
-                boton[i][j]=setBounds(x, y, 50, 50);
-                
-                
-            }
-        }
-    }
+//    public void crearMatriz(){
+//        int x=20;
+//        int y=10;
+//        boton=new JButton[fila][colum];
+//        for (int i = 0; i <fila; i++) {
+//            for (int j = 0; j <colum; j++) {
+//                boton[i][j]=new JButton();
+//                boton[i][j].setBounds(x, y, 50, 50);
+//                
+//                jPanel1.add(boton[i][j]);
+//                y+=46;
+//            }
+//            x+=45;
+//            y=10;
+//        }
+//    }
 }
