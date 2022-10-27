@@ -6,8 +6,12 @@ package Frm;
 
 import Clases.MatrizBotones;
 import java.awt.Color;
+import java.awt.Image;
+import javax.sound.sampled.Clip;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
 /**
  *
  * @author Francisco
@@ -17,15 +21,16 @@ public class FrmOthello extends javax.swing.JFrame {
     private int fila = 12;
     private int colum = 12;
     private JButton[][] boton;
-//    ImageIcon iconobtn = new ImageIcon("/Imagenes/ficha-de-poker.png");
+    
 
     /**
      * Creates new form FrmOthello
      */
     public FrmOthello() {
         initComponents();
-
+        
         crearMatriz();
+
 //        Mortar();
     }
 
@@ -38,24 +43,33 @@ public class FrmOthello extends javax.swing.JFrame {
             for (int j = 0; j < colum; j++) {
                 boton[i][j] = new JButton();
 
-                boton[i][j].setBackground(Color.BLUE);
+                boton[i][j].setBackground(Color.CYAN);
 //                boton[i][j-1].setBackground(Color.ORANGE);
-                boton[i][j].setBounds(y, x, 50, 50);
+                boton[i][j].setBounds(y, x, 63, 63);
 //
 
                 jPanel1.add(boton[i][j]);
-                y += 46;
+                y += 60;
                 n += 1;
 
             }
-            x += 45;
+            x += 60;
             y = 10;
         }
-        boton[5][5].setBackground(Color.WHITE);
-        boton[5][6].setBackground(Color.BLACK);
-        boton[6][5].setBackground(Color.BLACK);
+        ImageIcon iconobtn = new ImageIcon("src\\Imagenes\\ficha-de-casino1.png");
+        ImageIcon iconobtn1 = new ImageIcon("src\\Imagenes\\ficha-de-casino2.png");
+        Icon icon1=new ImageIcon(iconobtn.getImage().getScaledInstance(boton[6][6].getWidth(),boton[6][6].getHeight(),Image.SCALE_DEFAULT));
+        Icon icon2=new ImageIcon(iconobtn1.getImage().getScaledInstance(boton[6][6].getWidth(),boton[6][6].getHeight(),Image.SCALE_DEFAULT));
+        
+        
+
+        boton[5][5].setIcon(icon1);
+        boton[5][6].setIcon(icon2);
+        boton[6][5].setIcon(icon2);
+        boton[6][6].setIcon(icon1);
 //        boton[6][6].setBackground(Color.WHITE);
-        boton[6][6].setIcon(new ImageIcon(getClass().getResource("Imagenes/ficha-de-poker.png")));
+        
+//        boton[6][6].setIcon(new ImageIcon(getClass().getResource("Imagenes/ficha-de-poker.png")));
     }
 //    public void Mortar() {
 //        for (int i = 0; i < 10; i++) {
@@ -83,11 +97,11 @@ public class FrmOthello extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 631, Short.MAX_VALUE)
+            .addGap(0, 792, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
+            .addGap(0, 761, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -95,16 +109,16 @@ public class FrmOthello extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(15, 15, 15)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addContainerGap(284, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
