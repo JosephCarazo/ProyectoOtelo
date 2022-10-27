@@ -9,7 +9,8 @@ import javax.swing.JButton;
  *
  * @author Francisco
  */
-public final class MatrizBotones extends Frm.FrmOthello{
+public final class MatrizBotones{
+    private Frm.FrmOthello frm;
     private int fila=12;
     private int colum=12;
     private JButton [][] boton;
@@ -27,7 +28,7 @@ public final class MatrizBotones extends Frm.FrmOthello{
 //                boton[i][j]=new JButton();
 //                boton[i][j].setBounds(x, y, 50, 50);
 //                
-//                jPanel1.add(boton[i][j]);
+//                frm.jPanel1.add(boton[i][j]);
 //                y+=46;
 //            }
 //            x+=45;
