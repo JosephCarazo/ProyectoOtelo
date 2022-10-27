@@ -4,11 +4,16 @@
  */
 package Frm;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 /**
  *
  * @author josep
  */
 public class FrmInicio extends javax.swing.JFrame {
+
+    private Clip clip;
 
     /**
      * Creates new form FrmInicio
@@ -27,16 +32,40 @@ public class FrmInicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnStart = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnStart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BotonStart.png"))); // NOI18N
+        btnStart.setContentAreaFilled(false);
+        btnStart.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BotonStart94.png"))); // NOI18N
+        btnStart.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BotonStart94.png"))); // NOI18N
+        btnStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStartActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 110, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/FondoOthello.jpg"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+        try {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream("/Sonidos/Start.wav")));
+            clip.start();
+        } catch (Exception e) {
+        }
+        FrmOthello frm = new FrmOthello();
+        frm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnStartActionPerformed
 
     /**
      * @param args the command line arguments
@@ -74,6 +103,7 @@ public class FrmInicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnStart;
     private javax.swing.JLabel lblFondo;
     // End of variables declaration//GEN-END:variables
 }
