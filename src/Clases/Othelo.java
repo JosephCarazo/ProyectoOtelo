@@ -4,6 +4,8 @@
  */
 package Clases;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author joans
@@ -15,6 +17,8 @@ public class Othelo {
     char[][] celdasJuego = new char[filas][columnas];
     public int[] xcor;
     public int[] ycor;
+    public Jugador j1 = new Jugador();
+    public Jugador j2 = new Jugador();
 
     int x;
     int y;
@@ -143,6 +147,12 @@ public class Othelo {
         }else{
         
         }
+    }
+    
+    public void crearJugadores(){       
+        j1.setNombre(JOptionPane.showInputDialog(null, "¿Como podemos nombrar al jugador 1?", "OTHELLO", JOptionPane.QUESTION_MESSAGE));
+        j2.setNombre(JOptionPane.showInputDialog(null, "¿Como podemos nombrar al jugador 2?", "OTHELLO", JOptionPane.QUESTION_MESSAGE));
+        
     }
     
 /*

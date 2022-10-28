@@ -28,8 +28,8 @@ public class Jugador {
         this.turno = turno;
     }
 
-    public Jugador(String nombre) {
-        this.nombre = nombre;
+    public Jugador() {
+        this.nombre = "Default";
     }
    
    
