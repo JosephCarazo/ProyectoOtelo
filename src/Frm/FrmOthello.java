@@ -53,7 +53,7 @@ public class FrmOthello extends javax.swing.JFrame {
             for (int j = 0; j < colum; j++) {
                 boton[i][j] = new JButton();
                 boton[i][j].setBackground(Color.darkGray);
-                boton[i][j].setBorder(BorderFactory.createLineBorder(Color.GREEN));
+                boton[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
 //                boton[i][j].setBounds(y, x, 63, 63);
                 boton[i][j].setBounds(y, x, 58, 58);
 
@@ -111,49 +111,63 @@ public class FrmOthello extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        lblNombre1 = new javax.swing.JLabel();
+        lblNombre2 = new javax.swing.JLabel();
+        lblJugador1 = new javax.swing.JLabel();
+        lblJugador2 = new javax.swing.JLabel();
+        lblFondo2 = new javax.swing.JLabel();
+        lblFondo1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(51, 103, 36));
+        jPanel2.setBackground(new java.awt.Color(7, 8, 84));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(51, 103, 36));
+        jPanel1.setBackground(new java.awt.Color(7, 8, 84));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 112, -1, -1));
 
+        jLabel1.setBackground(new java.awt.Color(0, 1, 107));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/OthelloLetras_.png"))); // NOI18N
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(757, 134, -1, 77));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(721, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(48, 48, 48))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 539, Short.MAX_VALUE))
-        );
+        lblNombre1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblNombre1.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombre1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblNombre1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblNombre1.setName(""); // NOI18N
+        jPanel2.add(lblNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 300, 140, 28));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(324, 324, 324))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(100, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
-        );
+        lblNombre2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblNombre2.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombre2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblNombre2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblNombre2.setName(""); // NOI18N
+        jPanel2.add(lblNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 580, 140, 28));
+
+        lblJugador1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblJugador1.setForeground(new java.awt.Color(255, 255, 255));
+        lblJugador1.setText("JUGADOR:");
+        lblJugador1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblJugador1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblJugador1.setName(""); // NOI18N
+        jPanel2.add(lblJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 300, 70, 28));
+
+        lblJugador2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblJugador2.setForeground(new java.awt.Color(255, 255, 255));
+        lblJugador2.setText("JUGADOR:");
+        lblJugador2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblJugador2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblJugador2.setName(""); // NOI18N
+        jPanel2.add(lblJugador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 580, 70, 28));
+
+        lblFondo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Marco.png"))); // NOI18N
+        jPanel2.add(lblFondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(757, 551, 313, 216));
+
+        lblFondo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Marco.png"))); // NOI18N
+        jPanel2.add(lblFondo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(757, 269, 313, 216));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -100, 1090, 840));
 
@@ -210,6 +224,12 @@ public class FrmOthello extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     public javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblFondo1;
+    private javax.swing.JLabel lblFondo2;
+    private javax.swing.JLabel lblJugador1;
+    private javax.swing.JLabel lblJugador2;
+    private javax.swing.JLabel lblNombre1;
+    private javax.swing.JLabel lblNombre2;
     // End of variables declaration//GEN-END:variables
 
 }
