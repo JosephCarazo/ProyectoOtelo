@@ -42,12 +42,9 @@ public class FrmOthello extends javax.swing.JFrame {
         for (int i = 0; i < fila; i++) {
             for (int j = 0; j < colum; j++) {
                 boton[i][j] = new JButton();
-
-                boton[i][j].setBackground(Color.CYAN);
-//                boton[i][j-1].setBackground(Color.ORANGE);
+                boton[i][j].setBackground(Color.darkGray);
                 boton[i][j].setBounds(y, x, 63, 63);
-//
-
+                
                 jPanel1.add(boton[i][j]);
                 y += 60;
                 n += 1;
@@ -58,18 +55,14 @@ public class FrmOthello extends javax.swing.JFrame {
         }
         ImageIcon iconobtn = new ImageIcon("src\\Imagenes\\ficha-de-casino1.png");
         ImageIcon iconobtn1 = new ImageIcon("src\\Imagenes\\ficha-de-casino2.png");
-        Icon icon1=new ImageIcon(iconobtn.getImage().getScaledInstance(boton[6][6].getWidth(),boton[6][6].getHeight(),Image.SCALE_DEFAULT));
-        Icon icon2=new ImageIcon(iconobtn1.getImage().getScaledInstance(boton[6][6].getWidth(),boton[6][6].getHeight(),Image.SCALE_DEFAULT));
-        
-        
+        Icon icon1=new ImageIcon(iconobtn.getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT));
+        Icon icon2=new ImageIcon(iconobtn1.getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT));
 
         boton[5][5].setIcon(icon1);
         boton[5][6].setIcon(icon2);
         boton[6][5].setIcon(icon2);
         boton[6][6].setIcon(icon1);
-//        boton[6][6].setBackground(Color.WHITE);
         
-//        boton[6][6].setIcon(new ImageIcon(getClass().getResource("Imagenes/ficha-de-poker.png")));
     }
 //    public void Mortar() {
 //        for (int i = 0; i < 10; i++) {
