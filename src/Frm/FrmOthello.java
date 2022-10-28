@@ -8,6 +8,8 @@ import Clases.Othelo;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -66,7 +68,7 @@ public class FrmOthello extends javax.swing.JFrame {
                 } else if (otelo.getCeldasJuego(i, j) == 'O') {
                     boton[i][j].setIcon(icon2);
                 }
-
+                boton[i][j].addActionListener(new Action());
                 jPanel1.add(boton[i][j]);
 
             }
@@ -158,6 +160,17 @@ public class FrmOthello extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    ///ESTO SIRVE PARA CUANDO SE TOQUE CUALQUIER BOTON SE REALICE UNA ACCION
+    class Action implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           
+            otelo.mostrar();
+        }
+
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -198,10 +211,5 @@ public class FrmOthello extends javax.swing.JFrame {
     public javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public String toString() {
-        return "FrmOthello{" + "boton=" + boton + '}';
-    }
 
 }
