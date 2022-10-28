@@ -4,6 +4,8 @@
  */
 package othello;
 
+import Clases.Othelo;
+
 /**
  *
  * @author josep
@@ -15,7 +17,9 @@ public class Othello {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        int n,m;
+     Othelo o = new Othelo();
+     o.InicioJuego();
+     o.mostrar();
     }
     
 }

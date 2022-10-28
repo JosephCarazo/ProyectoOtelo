@@ -4,10 +4,13 @@
  */
 package Frm;
 
-import Clases.MatrizBotones;
+import Clases.Othelo;
 import java.awt.Color;
 import java.awt.Image;
-import javax.sound.sampled.Clip;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,6 +24,7 @@ public class FrmOthello extends javax.swing.JFrame {
     private int fila = 12;
     private int colum = 12;
     private JButton[][] boton;
+    Othelo otelo = new Othelo();
 
     /**
      * Creates new form FrmOthello
@@ -42,19 +46,31 @@ public class FrmOthello extends javax.swing.JFrame {
             for (int j = 0; j < colum; j++) {
                 boton[i][j] = new JButton();
                 boton[i][j].setBackground(Color.darkGray);
+                boton[i][j].setBorder(BorderFactory.createLineBorder(Color.GREEN));
 //                boton[i][j].setBounds(y, x, 63, 63);
                 boton[i][j].setBounds(y, x, 58, 58);
-                jPanel1.add(boton[i][j]);
-//                y += 60;
-//                n += 1;
-                y += 57;
+
+                y += 54;
                 n += 1;
+                ImageIcon iconobtn = new ImageIcon("src\\Imagenes\\ficha-de-casino1.png");
+                ImageIcon iconobtn1 = new ImageIcon("src\\Imagenes\\ficha-de-casino2.png");
+                Icon icon1 = new ImageIcon(iconobtn.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+                Icon icon2 = new ImageIcon(iconobtn1.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+                if (otelo.getCeldasJuego(i, j) == 'X') {
+                    boton[i][j].setIcon(icon1);
+                } else if (otelo.getCeldasJuego(i, j) == 'O') {
+                    boton[i][j].setIcon(icon2);
+                }
+
+                jPanel1.add(boton[i][j]);
+
             }
 //            x += 60;
 //            y = 10;
             x += 57;
             y = 10;
         }
+        /*
         ImageIcon iconobtn = new ImageIcon("src\\Imagenes\\ficha-de-casino1.png");
         ImageIcon iconobtn1 = new ImageIcon("src\\Imagenes\\ficha-de-casino2.png");
         Icon icon1 = new ImageIcon(iconobtn.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
@@ -64,6 +80,7 @@ public class FrmOthello extends javax.swing.JFrame {
         boton[5][6].setIcon(icon2);
         boton[6][5].setIcon(icon2);
         boton[6][6].setIcon(icon1);
+         */
 
     }
 //    public void Mortar() {
