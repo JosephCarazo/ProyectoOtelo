@@ -142,6 +142,8 @@ buscarFicha(c,0);
         }
     }
     
+    
+    
     public void buscarFicha(char c,int cont){
         if(xcor.length<cont){
     if(this.compMovimiento(xcor[cont] ,ycor[cont], c)){
