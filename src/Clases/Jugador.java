@@ -39,7 +39,7 @@ public class Jugador {
     }
 
     public Jugador() {
-        this.nombre = "Default";
+        this.nombre = "DEFAULT";
     }
 
 }

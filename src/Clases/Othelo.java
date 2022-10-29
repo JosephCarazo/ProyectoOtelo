@@ -157,8 +157,12 @@ public class Othelo {
     }
 
     public void crearJugadores() {
-        j1.setNombre(JOptionPane.showInputDialog(null, "¿Como podemos nombrar al jugador 1?", "OTHELLO", JOptionPane.QUESTION_MESSAGE).toUpperCase());
-        j2.setNombre(JOptionPane.showInputDialog(null, "¿Como podemos nombrar al jugador 2?", "OTHELLO", JOptionPane.QUESTION_MESSAGE).toUpperCase());
+        try {
+            j1.setNombre(JOptionPane.showInputDialog(null, "¿Como podemos nombrar al jugador 1?", "OTHELLO", JOptionPane.QUESTION_MESSAGE).toUpperCase());
+            j2.setNombre(JOptionPane.showInputDialog(null, "¿Como podemos nombrar al jugador 2?", "OTHELLO", JOptionPane.QUESTION_MESSAGE).toUpperCase());
+        } catch (Exception e) {
+            System.out.println("Tratando -> No comentarios.");
+        }
 
     }
 
