@@ -19,8 +19,8 @@ public class Othelo {
     public int[] ycor;
     public Jugador j1 = new Jugador();
     public Jugador j2 = new Jugador();
- public int[] xPosibles= {0,0,0,1,1,2,2,2};
-  public int[] yPosibles={0,1,2,0,2,0,1,2};
+    public int[] xPosibles = {0, 0, 0, 1, 1, 2, 2, 2};
+    public int[] yPosibles = {0, 1, 2, 0, 2, 0, 1, 2};
     int xInicial;
     int yInicial;
 
@@ -71,12 +71,13 @@ public class Othelo {
 
     /**
      * SE COMPRUEBA POSIBLES ESPACIOS
+     *
      * @param filaOrigen
      * @param columnaOrigen
      * @param c
-     * @return 
+     * @return
      */
-    public void adyacentesA(int filaOrigen, int columnaOrigen,char c) {
+    public void adyacentesA(int filaOrigen, int columnaOrigen, char c) {
 
         if (!(filaOrigen >= 0
                 && filaOrigen <= (filas - 1)
@@ -114,68 +115,64 @@ public class Othelo {
                         && (columnaOrigen + j) >= 0
                         && (columnaOrigen + j) <= (columnas - 1)) {
                     arrayFilas[indicePosicion] = filaOrigen + i;
-                    arrayColumnas[indicePosicion] = columnaOrigen + j;                   
+                    arrayColumnas[indicePosicion] = columnaOrigen + j;
                     indicePosicion++;
                 }
 
             }
 
         }
-this.xcor= arrayFilas;
-this.ycor= arrayColumnas;
-buscarFicha(c,0);
+        this.xcor = arrayFilas;
+        this.ycor = arrayColumnas;
+        buscarFicha(c, 0);
 
     }
-    
-    public void comprobador(int[] fila,int[] colum,char c){
-        if(fila.length>1){
-        int size = 0;
-        for(int i=0;i<fila.length;i++){
-        if(compMovimiento(fila[i],colum[i],c)){
-           size++;   
-        }
-        }
-        
-        }else{
-        
-        
+
+    public void comprobador(int[] fila, int[] colum, char c) {
+        if (fila.length > 1) {
+            int size = 0;
+            for (int i = 0; i < fila.length; i++) {
+                if (compMovimiento(fila[i], colum[i], c)) {
+                    size++;
+                }
+            }
+
+        } else {
+
         }
     }
-    
-    
-    
-    public void buscarFicha(char c,int cont){
-        if(xcor.length<cont){
-    if(this.compMovimiento(xcor[cont] ,ycor[cont], c)){
-    for (int i = 0; i < xcor.length; i++) {
-            if(xcor[cont]-xInicial==xPosibles[i]&&ycor[cont]-yInicial==yPosibles[i]){
-                System.out.println(i);
+
+    public void buscarFicha(char c, int cont) {
+        if (xcor.length < cont) {
+            if (this.compMovimiento(xcor[cont], ycor[cont], c)) {
+                for (int i = 0; i < xcor.length; i++) {
+                    if (xcor[cont] - xInicial == xPosibles[i] && ycor[cont] - yInicial == yPosibles[i]) {
+                        System.out.println(i);
+                    }
+                }
+            } else {
+                buscarFicha(c, cont += 1);
             }
         }
-    }else{
-    buscarFicha(c,cont+=1);
     }
-        }
-    }
-    
-    public void crearJugadores(){       
-        j1.setNombre(JOptionPane.showInputDialog(null, "¿Como podemos nombrar al jugador 1?", "OTHELLO", JOptionPane.QUESTION_MESSAGE));
-        j2.setNombre(JOptionPane.showInputDialog(null, "¿Como podemos nombrar al jugador 2?", "OTHELLO", JOptionPane.QUESTION_MESSAGE));
-        
-    }
-    
 
-    public void mosta(int h,int k, char c) {
-        xInicial=h;
-        yInicial=k;
-       adyacentesA(h, k,c);
+    public void crearJugadores() {
+        j1.setNombre(JOptionPane.showInputDialog(null, "¿Como podemos nombrar al jugador 1?", "OTHELLO", JOptionPane.QUESTION_MESSAGE).toUpperCase());
+        j2.setNombre(JOptionPane.showInputDialog(null, "¿Como podemos nombrar al jugador 2?", "OTHELLO", JOptionPane.QUESTION_MESSAGE).toUpperCase());
+
+    }
+
+    public void mosta(int h, int k, char c) {
+        xInicial = h;
+        yInicial = k;
+        adyacentesA(h, k, c);
 
         System.out.println("8 posiciones");
         for (int i = 0; i < xcor.length; i++) {
-            
-                System.out.print(xcor[i] + " ");
-                System.out.print(ycor[i] + " ");
-            
+
+            System.out.print(xcor[i] + " ");
+            System.out.print(ycor[i] + " ");
+
             System.out.println("");
         }
 

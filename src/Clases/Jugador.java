@@ -9,8 +9,10 @@ package Clases;
  * @author josep
  */
 public class Jugador {
-   private String nombre;
-   private int turno;
+
+    private String nombre;
+    private int turno;
+    private int contador;
 
     public String getNombre() {
         return nombre;
@@ -28,9 +30,16 @@ public class Jugador {
         this.turno = turno;
     }
 
+    public int getContador() {
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
+
     public Jugador() {
         this.nombre = "Default";
     }
-   
-   
+
 }
