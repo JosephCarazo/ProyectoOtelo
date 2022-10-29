@@ -19,9 +19,10 @@ public class Othelo {
     public int[] ycor;
     public Jugador j1 = new Jugador();
     public Jugador j2 = new Jugador();
-
-    int x;
-    int y;
+ public int[] xPosibles= {0,0,0,1,1,2,2,2};
+  public int[] yPosibles={0,1,2,0,2,0,1,2};
+    int xInicial;
+    int yInicial;
 
     public Othelo() {
         InicioJuego();
@@ -75,13 +76,13 @@ public class Othelo {
      * @param c
      * @return 
      */
-    public int[][] adyacentesA(int filaOrigen, int columnaOrigen,char c) {
+    public void adyacentesA(int filaOrigen, int columnaOrigen,char c) {
 
         if (!(filaOrigen >= 0
                 && filaOrigen <= (filas - 1)
                 && columnaOrigen >= 0
                 && columnaOrigen <= (columnas - 1))) {
-            return null;
+            return;
         }
 
         int numPosiciones;
@@ -99,7 +100,7 @@ public class Othelo {
                 numPosiciones = 8;
             }
         }
-        int[][] posiciones = new int[numPosiciones][2];
+        //int[][] posiciones = new int[numPosiciones][2];
         int[] arrayFilas = new int[numPosiciones];
         int[] arrayColumnas = new int[numPosiciones];
 
@@ -113,17 +114,15 @@ public class Othelo {
                         && (columnaOrigen + j) >= 0
                         && (columnaOrigen + j) <= (columnas - 1)) {
                     arrayFilas[indicePosicion] = filaOrigen + i;
-                    arrayColumnas[indicePosicion] = columnaOrigen + j;
-                    posiciones[indicePosicion][0] = filaOrigen + i;
-                    posiciones[indicePosicion][1] = columnaOrigen + j;
+                    arrayColumnas[indicePosicion] = columnaOrigen + j;                   
                     indicePosicion++;
                 }
 
             }
 
         }
-
-        return posiciones;
+this.xcor= arrayFilas;
+this.ycor= arrayColumnas;
 
     }
     
@@ -135,17 +134,22 @@ public class Othelo {
            size++;   
         }
         }
-        int[] arrayFilas = new int[size];
-        int[] arrayColumnas = new int[size];
-        for(int i=0;i<fila.length;i++){
-        if(compMovimiento(fila[i],colum[i],c)){
-             arrayFilas[i]=fila[i];
-             arrayColumnas[i]=colum[i];
-        }
-        }
-        comprobador(arrayFilas,arrayColumnas,c);
+        
         }else{
         
+        
+        }
+    }
+    
+    public void buscarFicha(char c,int cont){
+        if(xcor.length<cont){
+    if(this.compMovimiento(xcor[cont] ,ycor[cont], c)){
+    for (int i = 0; i < xcor.length; i++) {
+            if(xcor[cont]-xInicial==xPosibles[i]&&ycor[cont]-yInicial==yPosibles[i]){
+                System.out.println(i);
+            }
+        }
+    }
         }
     }
     
@@ -155,18 +159,21 @@ public class Othelo {
         
     }
     
-/*
-    public void mosta() {
-       /// int[][] posiciones8Pos = adyacentesA(0, 0);
+
+    public void mosta(int h,int k, char c) {
+        xInicial=h;
+        yInicial=k;
+       adyacentesA(h, k,c);
 
         System.out.println("8 posiciones");
-        for (int i = 0; i < posiciones8Pos.length; i++) {
-            for (int j = 0; j < posiciones8Pos[0].length; j++) {
-                System.out.print(posiciones8Pos[i][j] + " ");
-            }
+        for (int i = 0; i < xcor.length; i++) {
+            
+                System.out.print(xcor[i] + " ");
+                System.out.print(ycor[i] + " ");
+            
             System.out.println("");
         }
 
     }
-*/
+
 }
