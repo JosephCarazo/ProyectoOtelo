@@ -71,6 +71,15 @@ public class FrmOthello extends javax.swing.JFrame {
 
                 y += 54;
                 n += 1;
+                ImageIcon iconobtn = new ImageIcon("src\\Imagenes\\ficha-de-casino1.png");
+                ImageIcon iconobtn1 = new ImageIcon("src\\Imagenes\\ficha-de-casino2.png");
+                Icon icon1 = new ImageIcon(iconobtn.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+                Icon icon2 = new ImageIcon(iconobtn1.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+                if (otelo.getCeldasJuego(i, j) == 'X') {
+                    boton[i][j].setIcon(icon1);
+                } else if (otelo.getCeldasJuego(i, j) == 'O') {
+                    boton[i][j].setIcon(icon2);
+                }
 
                 boton[i][j].addActionListener(new Action());
                 jPanel1.add(boton[i][j]);
