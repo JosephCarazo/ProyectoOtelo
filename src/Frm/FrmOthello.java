@@ -96,16 +96,18 @@ public class FrmOthello extends javax.swing.JFrame {
                     boton[i][j].setIcon(icon1);
                 } else if (otelo.getCeldasJuego(i, j) == 'O') {
                     boton[i][j].setIcon(icon2);
+                }else if(otelo.getCeldasJuego(i, j) == 'p') {
+                    boton[i][j].setBackground(Color.GREEN);
                 }
-
                 boton[i][j].addActionListener(new Action());
                 panelMatriz.add(boton[i][j]);
-                inicioJuego(0, 0);
+                
 
             }
             x += 57;
             y = 10;
         }
+        //inicioJuego(0, 0);
     }
 
 //    public void Mortar() {
