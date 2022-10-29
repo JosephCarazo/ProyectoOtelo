@@ -123,6 +123,7 @@ public class Othelo {
         }
 this.xcor= arrayFilas;
 this.ycor= arrayColumnas;
+buscarFicha(c,0);
 
     }
     
@@ -149,6 +150,8 @@ this.ycor= arrayColumnas;
                 System.out.println(i);
             }
         }
+    }else{
+    buscarFicha(c,cont+=1);
     }
         }
     }
