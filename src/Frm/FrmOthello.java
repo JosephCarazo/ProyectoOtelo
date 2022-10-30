@@ -393,7 +393,7 @@ public class FrmOthello extends javax.swing.JFrame {
                         otelo.buscar('O', 'X');
                         ImageIcon iconobtn = new ImageIcon("src\\Imagenes\\ficha-de-casino1.png");
                         ImageIcon iconobtn1 = new ImageIcon("src\\Imagenes\\ficha-de-casino2.png");
-                        ImageIcon iconobtn2 = new ImageIcon("src\\Imagenes\\posible.png");
+                        ImageIcon iconobtn2 = new ImageIcon("src\\Imagenes\\posible2.png");
                         Icon icon1 = new ImageIcon(iconobtn.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
                         Icon icon2 = new ImageIcon(iconobtn1.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
                         Icon icon3 = new ImageIcon(iconobtn2.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
@@ -440,10 +440,10 @@ public class FrmOthello extends javax.swing.JFrame {
                         otelo.buscar('X', 'O');
                         ImageIcon iconobtn = new ImageIcon("src\\Imagenes\\ficha-de-casino1.png");
                         ImageIcon iconobtn1 = new ImageIcon("src\\Imagenes\\ficha-de-casino2.png");
-                        ImageIcon iconobtn2 = new ImageIcon("src\\Imagenes\\posible2.png");
+                        ImageIcon iconobtn3 = new ImageIcon("src\\Imagenes\\posible.png");
                         Icon icon1 = new ImageIcon(iconobtn.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
                         Icon icon2 = new ImageIcon(iconobtn1.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-                        Icon icon3 = new ImageIcon(iconobtn2.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+                        Icon icon3 = new ImageIcon(iconobtn3.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
 
                         for (int x = 0; x < 12; x++) {
                             for (int y = 0; y < 12; y++) {
