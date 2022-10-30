@@ -91,6 +91,9 @@ public class FrmOthello extends javax.swing.JFrame {
                 n += 1;
                 ImageIcon iconobtn = new ImageIcon("src\\Imagenes\\ficha-de-casino1.png");
                 ImageIcon iconobtn1 = new ImageIcon("src\\Imagenes\\ficha-de-casino2.png");
+                ImageIcon iconobtn2 = new ImageIcon("src\\Imagenes\\posible.png");
+                Icon icon3 = new ImageIcon(iconobtn2.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+
                 Icon icon1 = new ImageIcon(iconobtn.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
                 Icon icon2 = new ImageIcon(iconobtn1.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
                 if (otelo.getCeldasJuego(i, j) == 'X') {
@@ -98,7 +101,7 @@ public class FrmOthello extends javax.swing.JFrame {
                 } else if (otelo.getCeldasJuego(i, j) == 'O') {
                     boton[i][j].setIcon(icon2);
                 } else if (otelo.getCeldasJuego(i, j) == 'p') {
-                    boton[i][j].setBackground(Color.GREEN);
+                    boton[i][j].setIcon(icon3);
                 }
                 boton[i][j].addActionListener(new Action());
                 panelMatriz.add(boton[i][j]);
@@ -301,12 +304,15 @@ public class FrmOthello extends javax.swing.JFrame {
   private void inicioJuego(int i, int j) {
         ImageIcon iconobtn = new ImageIcon("src\\Imagenes\\ficha-de-casino1.png");
         ImageIcon iconobtn1 = new ImageIcon("src\\Imagenes\\ficha-de-casino2.png");
+        ImageIcon iconobtn2 = new ImageIcon("src\\Imagenes\\posible.png");
         Icon icon1 = new ImageIcon(iconobtn.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
         Icon icon2 = new ImageIcon(iconobtn1.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+        Icon icon3 = new ImageIcon(iconobtn2.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+
         if (i < 12) {
             if (j < 12) {
                 if (otelo.getCeldasJuego(i, j) == 'p') {
-                    boton[i][j].setBackground(Color.GREEN);
+                    boton[i][j].setIcon(icon3);
                     inicioJuego(i, j += 1);
                 }
                 if (otelo.getCeldasJuego(i, j) == 'X') {
@@ -318,7 +324,7 @@ public class FrmOthello extends javax.swing.JFrame {
                     inicioJuego(i, j += 1);
                 }
                 if (otelo.getCeldasJuego(i, j) == '.') {
-                    boton[i][j].setBackground(Color.DARK_GRAY);
+                    boton[i][j].setIcon(null);
                     inicioJuego(i, j += 1);
                 }
             } else {
@@ -375,7 +381,7 @@ public class FrmOthello extends javax.swing.JFrame {
                         inicioJuego(0, 0);
                         System.out.println("");
                         otelo.mostrar();
-                    } 
+                    }
 
                 }
 
