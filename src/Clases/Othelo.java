@@ -133,21 +133,31 @@ public class Othelo {
         }
 
         for (int i = 0; i < arrayFilas.length; i++) {
-           if(contador!=2){
+            if (contador <= 2) {
                 if (compMovimiento(arrayFilas[i], arrayColumnas[i], 'X')) {
                     contador += 1;
                     adyacentesA(arrayFilas[i], arrayColumnas[i]);
-                    
+
                 }
-           }
-             
-            if (contador > 0) {
-            if (compMovimiento(arrayFilas[i], arrayColumnas[i], 'O')) {
-                contador-=1;
-                seguir(i, arrayFilas[i], arrayColumnas[i]);
-                return;
-                
             }
+
+            if (contador > 0) {
+                if (compMovimiento(arrayFilas[i], arrayColumnas[i], 'O')) {
+                    seguir(i, arrayFilas[i], arrayColumnas[i]);
+                    return;
+
+                }
+            }
+        }
+    }
+
+    public void clean() {
+        for (int k = 0; k < 12; k++) {
+            for (int l = 0; l < 12; l++) {
+                if (celdasJuego[k][l] == 'p') {
+                    celdasJuego[k][l] = '.';
+
+                }
             }
         }
     }
@@ -155,8 +165,9 @@ public class Othelo {
     // this.xcor = arrayFilas;
     // this.ycor = arrayColumnas;
     public void seguir(int i, int fila, int columna) {
-
+        System.out.println(i);
         if (i == 0) {
+
             if (compMovimiento(fila - 1, columna - 1, 'O')) {
                 seguir(i, fila - 1, columna - 1);
             } else if (compMovimiento(fila - 1, columna - 1, '.')) {
@@ -236,8 +247,6 @@ public class Othelo {
 
     }
     int contador;
-
- 
 
     public void crearJugadores() {
         try {

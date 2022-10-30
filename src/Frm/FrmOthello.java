@@ -365,22 +365,17 @@ public class FrmOthello extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             for (int i = 0; i < 12; i++) {
                 for (int j = 0; j < 12; j++) {
-                    if (e.getSource() == boton[i][j]) {
-                        for (int k = 0; k < 12; k++) {
-                            for (int l = 0; l < 12; l++) {
-                                if (otelo.getCeldasJuego(k, l) == 'p') {
-                                    otelo.setCeldasJuego(k, l, '.');
-                                    inicioJuego(0,0);
-                                   otelo.mostrar();
-
-                                }
-                            }
-                        }
+                    if (e.getSource() == boton[i][j]&&otelo.getCeldasJuego(i, j)=='p') {
+    otelo.clean();
                         inicioJuego(0,0);
                         otelo.buscar();
                         inicioJuego(0,0);
                         System.out.println("");
                         otelo.mostrar();
+                    }else{
+                        System.out.println("Error");
+                        System.out.println(i+" "+j);
+                        return;
                     }
 
                 }
