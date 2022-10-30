@@ -33,6 +33,9 @@ public class FrmOthello extends javax.swing.JFrame {
     private int colum = 12;
     private JButton[][] boton;
     Othelo otelo = new Othelo();
+      // se craean variables para contar las ficas de los jugadores
+    private int fichasJ1=2;//fichas jugador1
+    private int fichasJ2=2;//fichas jugador2
 
     /**
      * Creates new form FrmOthello
@@ -63,6 +66,8 @@ public class FrmOthello extends javax.swing.JFrame {
         lblFichaN.setVisible(false);
         lblFichaR.setVisible(false);
         lbl1.setVisible(false);
+        lblContadorCantidad1.setVisible(false);//se agrega
+        lblContadorCantidad2.setVisible(false);//se agrega
         lbl2.setVisible(false);
         lblLetras.setVisible(false);
         lblContador1.setVisible(false);
@@ -110,6 +115,9 @@ public class FrmOthello extends javax.swing.JFrame {
             x += 57;
             y = 10;
         }
+        //Se asignan la cantidad de ficahas por defecto de cada jugar
+        this.lblContadorCantidad1.setText(String.valueOf(this.fichasJ1));
+        this.lblContadorCantidad2.setText(String.valueOf(this.fichasJ2));
         //inicioJuego(0, 0);
     }
 
@@ -352,6 +360,8 @@ public class FrmOthello extends javax.swing.JFrame {
         lblLetras.setVisible(true);
         lblContador1.setVisible(true);
         lblContador2.setVisible(true);
+          lblContadorCantidad1.setVisible(true);//se agrega
+        lblContadorCantidad2.setVisible(true);//se agrega
         lblPatineta.setVisible(false);
         lblNombreTurno.setVisible(true);
         lblMarcoTurno.setVisible(true);
@@ -382,7 +392,13 @@ public class FrmOthello extends javax.swing.JFrame {
                         System.out.println("");
                         otelo.mostrar();
                     }
-
+//solo es prueba de los contadores de fichas 
+                        if (e.getSource() == boton[i][j]) {
+                        otelo.setCeldasJuego(i, j, 'O');
+                        lblContadorCantidad1.setText(String.valueOf(fichasJ2+=1));
+                        }else{
+                          lblContadorCantidad2.setText(String.valueOf(fichasJ1+=1));  
+                        }
                 }
 
             }
