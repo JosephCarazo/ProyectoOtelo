@@ -385,12 +385,12 @@ public class FrmOthello extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             for (int i = 0; i < 12; i++) {
                 for (int j = 0; j < 12; j++) {
-                    if (e.getSource() == boton[i][j] && turno == 1) {
+                    if (e.getSource() == boton[i][j] && turno == 1&&otelo.getCeldasJuego(i, j)=='p') {
 
                         otelo.setCeldasJuego(i, j, 'X');
                         otelo.clean();
 
-                        otelo.buscar('X', 'O');
+                        otelo.buscar('O', 'X');
                         ImageIcon iconobtn = new ImageIcon("src\\Imagenes\\ficha-de-casino1.png");
                         ImageIcon iconobtn1 = new ImageIcon("src\\Imagenes\\ficha-de-casino2.png");
                         ImageIcon iconobtn2 = new ImageIcon("src\\Imagenes\\posible.png");
@@ -432,15 +432,15 @@ public class FrmOthello extends javax.swing.JFrame {
                     }
                          */
                     }
-                    if (e.getSource() == boton[i][j] && turno == 2) {
+                    else if (e.getSource() == boton[i][j] && turno == 2&&otelo.getCeldasJuego(i, j)=='p') {
                         turno = 1;
                         otelo.setCeldasJuego(i, j, 'O');
                         otelo.clean();
 
-                        otelo.buscar('O', 'X');
+                        otelo.buscar('X', 'O');
                         ImageIcon iconobtn = new ImageIcon("src\\Imagenes\\ficha-de-casino1.png");
                         ImageIcon iconobtn1 = new ImageIcon("src\\Imagenes\\ficha-de-casino2.png");
-                        ImageIcon iconobtn2 = new ImageIcon("src\\Imagenes\\posible.png");
+                        ImageIcon iconobtn2 = new ImageIcon("src\\Imagenes\\posible2.png");
                         Icon icon1 = new ImageIcon(iconobtn.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
                         Icon icon2 = new ImageIcon(iconobtn1.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
                         Icon icon3 = new ImageIcon(iconobtn2.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));

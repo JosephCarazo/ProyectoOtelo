@@ -196,7 +196,7 @@ public class Othelo {
             if (celdasJuego[fila][columna]==c) {
                 seguir(i, fila, columna += 1,c);
                 return;
-            } else if (celdasJuego[fila][columna]=='.' && celdasJuego[fila][columna-1]=='O') {
+            } else if (celdasJuego[fila][columna]=='.' && celdasJuego[fila][columna-1]==c) {
                 celdasJuego[fila][columna] = 'p';
                 return;
             }
