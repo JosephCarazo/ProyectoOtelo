@@ -374,7 +374,7 @@ public class FrmOthello extends javax.swing.JFrame {
         }
         this.crearJugadres();
     }//GEN-LAST:event_btnIniciarActionPerformed
-
+int turno;
     ///ESTO SIRVE PARA CUANDO SE TOQUE CUALQUIER BOTON SE REALICE UNA ACCION
     class Action implements ActionListener {
 
@@ -382,8 +382,57 @@ public class FrmOthello extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             for (int i = 0; i < 12; i++) {
                 for (int j = 0; j < 12; j++) {
-                    if (e.getSource() == boton[i][j]) {
+                    if (e.getSource() == boton[i][j]&&turno==1) {
+                        turno+=1;
                         otelo.setCeldasJuego(i, j, 'X');
+                        otelo.clean();
+
+                        otelo.buscar();
+                        ImageIcon iconobtn = new ImageIcon("src\\Imagenes\\ficha-de-casino1.png");
+        ImageIcon iconobtn1 = new ImageIcon("src\\Imagenes\\ficha-de-casino2.png");
+        ImageIcon iconobtn2 = new ImageIcon("src\\Imagenes\\posible.png");
+        Icon icon1 = new ImageIcon(iconobtn.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+        Icon icon2 = new ImageIcon(iconobtn1.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+        Icon icon3 = new ImageIcon(iconobtn2.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+
+         for (int x = 0; x < 12; x++) {
+                for (int y = 0;y < 12; y++) {
+                if (otelo.getCeldasJuego(x, y) == 'p') {
+                    boton[x][y].setIcon(icon3);
+                   
+                }
+                if (otelo.getCeldasJuego(x, y) == 'X') {
+                    boton[x][y].setIcon(icon1);
+                    
+                }
+                if (otelo.getCeldasJuego(x, y) == 'O') {
+                    boton[x][y].setIcon(icon2);
+                   
+                }
+                if (otelo.getCeldasJuego(x, y) == '.') {
+                    boton[x][y].setIcon(null);
+                   
+                }
+            }
+         }
+
+        
+                        System.out.println("");
+                        otelo.mostrar();
+                    
+//solo es prueba de los contadores de fichas 
+/*
+                    if (e.getSource() == boton[i][j]) {
+                        otelo.setCeldasJuego(i, j, 'O');
+                        lblContadorCantidad1.setText(String.valueOf(fichasJ2 += 1));
+                    } else {
+                        lblContadorCantidad2.setText(String.valueOf(fichasJ1 += 1));
+                    }
+*/
+                }
+                       if (e.getSource() == boton[i][j]&&turno==2) {
+                           turno=1;
+                        otelo.setCeldasJuego(i, j, 'O');
                         otelo.clean();
 
                         otelo.buscar();
