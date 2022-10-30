@@ -96,12 +96,11 @@ public class FrmOthello extends javax.swing.JFrame {
                     boton[i][j].setIcon(icon1);
                 } else if (otelo.getCeldasJuego(i, j) == 'O') {
                     boton[i][j].setIcon(icon2);
-                }else if(otelo.getCeldasJuego(i, j) == 'p') {
+                } else if (otelo.getCeldasJuego(i, j) == 'p') {
                     boton[i][j].setBackground(Color.GREEN);
                 }
                 boton[i][j].addActionListener(new Action());
                 panelMatriz.add(boton[i][j]);
-                
 
             }
             x += 57;
@@ -317,6 +316,10 @@ public class FrmOthello extends javax.swing.JFrame {
                     boton[i][j].setIcon(icon2);
                     inicioJuego(i, j += 1);
                 }
+                if (otelo.getCeldasJuego(i, j) == '.') {
+                   boton[i][j].setBackground(Color.DARK_GRAY);
+                    inicioJuego(i, j += 1);
+                }
             } else {
                 j = 0;
                 inicioJuego(i += 1, j);
@@ -363,9 +366,21 @@ public class FrmOthello extends javax.swing.JFrame {
             for (int i = 0; i < 12; i++) {
                 for (int j = 0; j < 12; j++) {
                     if (e.getSource() == boton[i][j]) {
-                        otelo.mosta(i, j, otelo.getCeldasJuego(i, j));
+                        for (int k = 0; k < 12; k++) {
+                            for (int l = 0; l < 12; l++) {
+                                if (otelo.getCeldasJuego(k, l) == 'p') {
+                                    otelo.setCeldasJuego(k, l, '.');
+                                    inicioJuego(0,0);
+                                   otelo.mostrar();
+
+                                }
+                            }
+                        }
+                        inicioJuego(0,0);
+                        otelo.buscar();
+                        inicioJuego(0,0);
+                        System.out.println("");
                         otelo.mostrar();
-                        inicioJuego(0, 0);
                     }
 
                 }
