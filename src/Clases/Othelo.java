@@ -144,11 +144,11 @@ public class Othelo {
             if (contador > 0) {
                 if (compMovimiento(arrayFilas[i], arrayColumnas[i], 'O')) {
                     seguir(i, arrayFilas[i], arrayColumnas[i]);
-                    return;
+                   
 
                 }
             }
-        }
+        } 
     }
 
     public void clean() {
@@ -170,7 +170,7 @@ public class Othelo {
 
             if (compMovimiento(fila - 1, columna - 1, 'O')) {
                 seguir(i, fila - 1, columna - 1);
-            } else if (compMovimiento(fila - 1, columna - 1, '.')) {
+            } else if (compMovimiento(fila - 1, columna - 1, '.')&&compMovimiento(fila + 1, columna+1, 'O')) {
                 celdasJuego[fila - 1][columna - 1] = 'p';
                 return;
             }
@@ -179,7 +179,7 @@ public class Othelo {
         if (i == 1) {
             if (compMovimiento(fila - 1, columna, 'O')) {
                 seguir(i, fila - 1, columna);
-            } else if (compMovimiento(fila - 1, columna, '.')) {
+            } else if (compMovimiento(fila - 1, columna, '.')&&compMovimiento(fila + 1, columna, 'O')) {
                 celdasJuego[fila - 1][columna] = 'p';
                 return;
             }
@@ -187,7 +187,7 @@ public class Othelo {
         if (i == 2) {
             if (compMovimiento(fila + 1, columna + 1, 'O')) {
                 seguir(i, fila + 1, columna + 1);
-            } else if (compMovimiento(fila + 1, columna + 1, '.')) {
+            } else if (compMovimiento(fila + 1, columna + 1, '.')&&compMovimiento(fila - 1, columna-1, 'O')) {
                 celdasJuego[fila + 1][columna + 1] = 'p';
                 return;
             }
@@ -195,7 +195,7 @@ public class Othelo {
         if (i == 3) {
             if (compMovimiento(fila, columna - 1, 'O')) {
                 seguir(i, fila, columna - 1);
-            } else if (compMovimiento(fila, columna - 1, '.')) {
+            } else if (compMovimiento(fila, columna - 1, '.')&&compMovimiento(fila , columna+1, 'O')) {
                 celdasJuego[fila][columna - 1] = 'p';
                 return;
             }
@@ -203,7 +203,7 @@ public class Othelo {
         if (i == 4) {
             if (compMovimiento(fila, columna + 1, 'O')) {
                 seguir(i, fila, columna + 1);
-            } else if (compMovimiento(fila, columna + 1, '.')) {
+            } else if (compMovimiento(fila, columna + 1, '.')&&compMovimiento(fila , columna-1, 'O')) {
                 celdasJuego[fila][columna + 1] = 'p';
                 return;
             }
@@ -212,7 +212,7 @@ public class Othelo {
         if (i == 5) {
             if (compMovimiento(fila + 1, columna - 1, 'O')) {
                 seguir(i, fila + 1, columna - 1);
-            } else if (compMovimiento(fila + 1, columna - 1, '.')) {
+            } else if (compMovimiento(fila + 1, columna - 1, '.')&&compMovimiento(fila - 1, columna+1, 'O')) {
                 celdasJuego[fila + 1][columna - 1] = 'p';
                 return;
             }
@@ -220,7 +220,7 @@ public class Othelo {
         if (i == 6) {
             if (compMovimiento(fila + 1, columna, 'O')) {
                 seguir(i, fila + 1, columna);
-            } else if (compMovimiento(fila + 1, columna, '.')) {
+            } else if (compMovimiento(fila + 1, columna, '.')&&compMovimiento(fila - 1, columna, 'O')) {
                 celdasJuego[fila + 1][columna] = 'p';
                 return;
             }
@@ -228,7 +228,7 @@ public class Othelo {
         if (i == 7) {
             if (compMovimiento(fila + 1, columna + 1, 'O')) {
                 seguir(i, fila + 1, columna + 1);
-            } else if (compMovimiento(fila + 1, columna + 1, '.')) {
+            } else if (compMovimiento(fila + 1, columna + 1, '.')&&compMovimiento(fila - 1, columna-1, 'O')) {
                 celdasJuego[fila + 1][columna + 1] = 'p';
                 return;
             }

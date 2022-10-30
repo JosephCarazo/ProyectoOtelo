@@ -42,6 +42,7 @@ public class FrmOthello extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.ocultar();
         this.crearMatriz();
+        otelo.mostrar();
     }
 
     public void crearJugadres() {
@@ -317,7 +318,7 @@ public class FrmOthello extends javax.swing.JFrame {
                     inicioJuego(i, j += 1);
                 }
                 if (otelo.getCeldasJuego(i, j) == '.') {
-                   boton[i][j].setBackground(Color.DARK_GRAY);
+                    boton[i][j].setBackground(Color.DARK_GRAY);
                     inicioJuego(i, j += 1);
                 }
             } else {
@@ -365,18 +366,16 @@ public class FrmOthello extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             for (int i = 0; i < 12; i++) {
                 for (int j = 0; j < 12; j++) {
-                    if (e.getSource() == boton[i][j]&&otelo.getCeldasJuego(i, j)=='p') {
-    otelo.clean();
-                        inicioJuego(0,0);
+                    if (e.getSource() == boton[i][j]) {
+                        otelo.setCeldasJuego(i, j, 'X');
+                        inicioJuego(0, 0);
+                        otelo.clean();
+                        inicioJuego(0, 0);
                         otelo.buscar();
-                        inicioJuego(0,0);
+                        inicioJuego(0, 0);
                         System.out.println("");
                         otelo.mostrar();
-                    }else{
-                        System.out.println("Error");
-                        System.out.println(i+" "+j);
-                        return;
-                    }
+                    } 
 
                 }
 
