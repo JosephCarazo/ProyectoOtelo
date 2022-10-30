@@ -33,6 +33,9 @@ public class FrmOthello extends javax.swing.JFrame {
     private int colum = 12;
     private JButton[][] boton;
     Othelo otelo = new Othelo();
+    // se craean variables para contar las ficas de los jugadores
+    private int fichasJ1=2;
+    private int fichasJ2=2;
 
     /**
      * Creates new form FrmOthello
@@ -107,6 +110,10 @@ public class FrmOthello extends javax.swing.JFrame {
             x += 57;
             y = 10;
         }
+        //Se asignan la cantidad de ficahas por defecto de cada jugar
+        this.lblContadorCantidad1.setText(String.valueOf(this.fichasJ1));
+        this.lblContadorCantidad2.setText(String.valueOf(this.fichasJ2));
+        
         //inicioJuego(0, 0);
     }
 
@@ -307,23 +314,24 @@ public class FrmOthello extends javax.swing.JFrame {
             if (j < 12) {
                 if (otelo.getCeldasJuego(i, j) == 'p') {
                     boton[i][j].setBackground(Color.GREEN);
-                    inicioJuego(i, j += 1);
+                    inicioJuego(i, j + 1);
                 }
                 if (otelo.getCeldasJuego(i, j) == 'X') {
                     boton[i][j].setIcon(icon1);
-                    inicioJuego(i, j += 1);
+                    boton[i][j].setBackground(Color.DARK_GRAY);
+                    inicioJuego(i, j + 1);
                 }
                 if (otelo.getCeldasJuego(i, j) == 'O') {
                     boton[i][j].setIcon(icon2);
-                    inicioJuego(i, j += 1);
+                    inicioJuego(i, j + 1);
                 }
                 if (otelo.getCeldasJuego(i, j) == '.') {
                     boton[i][j].setBackground(Color.DARK_GRAY);
-                    inicioJuego(i, j += 1);
+                    inicioJuego(i, j + 1);
                 }
             } else {
                 j = 0;
-                inicioJuego(i += 1, j);
+                inicioJuego(i + 1, j);
             }
 
         }
