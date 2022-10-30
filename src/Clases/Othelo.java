@@ -86,7 +86,7 @@ public class Othelo {
      * @param c
      * @return
      */
-    public void adyacentesA(int filaOrigen, int columnaOrigen) {
+    public void adyacentesA(int filaOrigen, int columnaOrigen,char contrario) {
 
         if (!(filaOrigen >= 0
                 && filaOrigen <= (filas - 1)
@@ -134,8 +134,8 @@ public class Othelo {
 
         for (int i = 0; i < arrayFilas.length; i++) {
 
-            if (compMovimiento(arrayFilas[i], arrayColumnas[i], 'O')) {
-                seguir(i, arrayFilas[i], arrayColumnas[i]);
+            if (compMovimiento(arrayFilas[i], arrayColumnas[i], contrario)) {
+                seguir(i, arrayFilas[i], arrayColumnas[i],contrario);
 
             }
 
@@ -155,12 +155,12 @@ public class Othelo {
 
     // this.xcor = arrayFilas;
     // this.ycor = arrayColumnas;
-    public void seguir(int i, int fila, int columna) {
+    public void seguir(int i, int fila, int columna,char c) {
         System.out.println(i);
         if (i == 0) {
 
-            if (compMovimiento(fila, columna, 'O')) {
-                seguir(i, fila - 1, columna - 1);
+            if (compMovimiento(fila, columna, c)) {
+                seguir(i, fila - 1, columna - 1,c);
             } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila + 1, columna + 1, 'O')) {
                 celdasJuego[fila][columna] = 'p';
                 return;
@@ -168,33 +168,33 @@ public class Othelo {
         }
 
         if (i == 1) {
-            if (compMovimiento(fila, columna, 'O')) {
-                seguir(i, fila -= 1, columna);
-            } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila + 1, columna, 'O')) {
+            if (compMovimiento(fila, columna, c)) {
+                seguir(i, fila -= 1, columna,c);
+            } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila + 1, columna, c)) {
                 celdasJuego[fila][columna] = 'p';
                 return;
             }
         }
         if (i == 2) {
-            if (compMovimiento(fila + 1, columna + 1, 'O')) {
-                seguir(i, fila + 1, columna + 1);
-            } else if (compMovimiento(fila + 1, columna + 1, '.') && compMovimiento(fila - 1, columna - 1, 'O')) {
+            if (compMovimiento(fila + 1, columna + 1, c)) {
+                seguir(i, fila + 1, columna + 1,c);
+            } else if (compMovimiento(fila + 1, columna + 1, '.') && compMovimiento(fila - 1, columna - 1, c)) {
                 celdasJuego[fila + 1][columna + 1] = 'p';
                 return;
             }
         }
         if (i == 3) {
-            if (compMovimiento(fila, columna, 'O')) {
-                seguir(i, fila, columna -= 1);
+            if (compMovimiento(fila, columna, c)) {
+                seguir(i, fila, columna -= 1,c);
                 return;
-            } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila, columna + 1, 'O')) {
+            } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila, columna + 1, c)) {
                 celdasJuego[fila][columna] = 'p';
             
             }
         }
         if (i == 4) {
-            if (celdasJuego[fila][columna]=='O') {
-                seguir(i, fila, columna += 1);
+            if (celdasJuego[fila][columna]==c) {
+                seguir(i, fila, columna += 1,c);
                 return;
             } else if (celdasJuego[fila][columna]=='.' && celdasJuego[fila][columna-1]=='O') {
                 celdasJuego[fila][columna] = 'p';
@@ -203,36 +203,36 @@ public class Othelo {
         }
 
         if (i == 5) {
-            if (compMovimiento(fila + 1, columna - 1, 'O')) {
-                seguir(i, fila + 1, columna - 1);
+            if (compMovimiento(fila + 1, columna - 1, c)) {
+                seguir(i, fila + 1, columna - 1,c);
             } else if (compMovimiento(fila + 1, columna - 1, '.') && compMovimiento(fila - 1, columna + 1, 'O')) {
                 celdasJuego[fila + 1][columna - 1] = 'p';
                 return;
             }
         }
         if (i == 6) {
-            if (celdasJuego[fila][columna]=='O') {
-                seguir(i, fila += 1, columna);
-            } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila - 1, columna, 'O')) {
+            if (celdasJuego[fila][columna]==c) {
+                seguir(i, fila += 1, columna,c);
+            } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila - 1, columna, c)) {
                 celdasJuego[fila][columna] = 'p';
                 return;
             }
         }
         if (i == 7) {
-            if (compMovimiento(fila + 1, columna + 1, 'O')) {
-                seguir(i, fila + 1, columna + 1);
-            } else if (compMovimiento(fila + 1, columna + 1, '.') && compMovimiento(fila - 1, columna - 1, 'O')) {
+            if (compMovimiento(fila + 1, columna + 1, c)) {
+                seguir(i, fila + 1, columna + 1,c);
+            } else if (compMovimiento(fila + 1, columna + 1, '.') && compMovimiento(fila - 1, columna - 1, c)) {
                 celdasJuego[fila + 1][columna + 1] = 'p';
                 return;
             }
         }
     }
 
-    public void buscar() {
+    public void buscar(char porBuscar,char contraria) {
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < 12; j++) {
-                if (celdasJuego[i][j] == 'X') {
-                    adyacentesA(i, j);
+                if (celdasJuego[i][j] == porBuscar) {
+                    adyacentesA(i, j,contraria);
 
                 }
             }
