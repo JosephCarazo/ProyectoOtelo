@@ -100,7 +100,7 @@ public class Othelo {
 
             if (compMovimiento(fila, columna, c)) {
                 celdasJuego[fila][columna] = finall;
-                seguir(i, fila - 1, columna - 1, c);
+                seguir(i, fila - 1, columna - 1, c);///RECODAR
             } else if (compMovimiento(fila, columna, finall)) {
                 celdasJuego[fila + 1][columna + 1] = finall;
                 return;
@@ -128,10 +128,10 @@ public class Othelo {
         if (i == 3) {
             if (compMovimiento(fila, columna, c)) {
                 celdasJuego[fila][columna] = finall;
-                seguir(i, fila, columna - 1, c);
+                seguir(i, fila, columna -= 1, c);
                 return;
-            } else if (compMovimiento(fila, columna, finall)) {
-                celdasJuego[fila][columna + 1] = finall;
+            } else if (compMovimiento(fila, columna, finall)&&celdasJuego[fila][columna+1]==finall) {
+                celdasJuego[fila][columna] = finall;
 
             }
         }
