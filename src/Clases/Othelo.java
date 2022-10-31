@@ -32,8 +32,10 @@ public class Othelo {
         return celdasJuego[i][j];
     }
 
-    public void setCeldasJuego(int i, int j, char c) {
-        this.celdasJuego[i][j] = c;
+    public void setCeldasJuego(int i, int j, char guardar,char buscar) {
+        this.celdasJuego[i][j] = guardar;
+        this.adyacentesA(i, j, guardar);
+        
     }
 
     public void InicioJuego() {
@@ -245,6 +247,8 @@ public class Othelo {
         try {
             j1.setNombre(JOptionPane.showInputDialog(null, "¿Como podemos nombrar al jugador 1?", "OTHELLO", JOptionPane.QUESTION_MESSAGE).toUpperCase());
             j2.setNombre(JOptionPane.showInputDialog(null, "¿Como podemos nombrar al jugador 2?", "OTHELLO", JOptionPane.QUESTION_MESSAGE).toUpperCase());
+            j1.setFicha('X');
+            j2.setFicha('O');
         } catch (Exception e) {
             System.out.println("Tratando -> No comentarios.");
         }

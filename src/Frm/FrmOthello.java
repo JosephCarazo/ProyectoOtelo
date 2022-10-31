@@ -45,7 +45,7 @@ public class FrmOthello extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.ocultar();
-        this.crearMatriz();
+        this.crearMatriz(); 
         otelo.mostrar();
         turno = 1;
 
@@ -56,6 +56,7 @@ public class FrmOthello extends javax.swing.JFrame {
         lblNombre1.setText(otelo.j1.getNombre());
         lblNombreTurno.setText(otelo.j1.getNombre());
         lblNombre2.setText(otelo.j2.getNombre());
+        
     }
 
     public void ocultar() {
