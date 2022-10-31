@@ -4,6 +4,8 @@
  */
 package Clases;
 
+import static java.lang.Integer.parseInt;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -83,94 +85,144 @@ public class Othelo {
             }
 
         }
-
+        ArrayList<Integer> Xpos = new ArrayList<Integer>();
+        ArrayList<Integer> Ypos = new ArrayList<Integer>();
         for (int i = 0; i < arrayFilas.length; i++) {
 
             if (compMovimiento(arrayFilas[i], arrayColumnas[i], contrario)) {
-                voltearDemasFichas(i, arrayFilas[i], arrayColumnas[i], contrario, finall);
+
+                voltearDemasFichas(i, arrayFilas[i], arrayColumnas[i], contrario, finall, Xpos, Ypos);
 
             }
 
         }
     }
 
-    public void voltearDemasFichas(int i, int fila, int columna, char c, char finall) {
+    public void voltearDemasFichas(int i, int fila, int columna, char c, char finall, ArrayList XposInic, ArrayList YposInic) {
         System.out.println(i);
         if (i == 0) {
 
             if (compMovimiento(fila, columna, c)) {
-                celdasJuego[fila][columna] = finall;
-                seguir(i, fila - 1, columna - 1, c);///RECODAR
-            } else if (compMovimiento(fila, columna, finall)) {
-                celdasJuego[fila + 1][columna + 1] = finall;
+                XposInic.add(fila);
+                YposInic.add(columna);
+                voltearDemasFichas(i, fila - 1, columna - 1, c, finall, XposInic, YposInic);
+                return;
+            } else if (compMovimiento(fila, columna, finall) && celdasJuego[fila + 1][columna + 1] == c) {
+                for (int x = 0; x < XposInic.size(); x++) {
+                    int xp = (int) XposInic.get(x);
+                    int yp = (int) (YposInic.get(x));
+                    celdasJuego[xp][yp] = finall;
+                }
                 return;
             }
         }
 
         if (i == 1) {
             if (compMovimiento(fila, columna, c)) {
-                celdasJuego[fila][columna] = finall;
-                seguir(i, fila - 1, columna, c);
-            } else if (compMovimiento(fila, columna, finall)) {
-                celdasJuego[fila + 1][columna] = finall;
+                XposInic.add(fila);
+                YposInic.add(columna);
+                voltearDemasFichas(i, fila - 1, columna, c, finall, XposInic, YposInic);
+                return;
+            } else if (compMovimiento(fila, columna, finall) && celdasJuego[fila + 1][columna] == c) {
+                for (int x = 0; x < XposInic.size(); x++) {
+                    int xp = (int) XposInic.get(x);
+                    int yp = (int) (YposInic.get(x));
+                    celdasJuego[xp][yp] = finall;
+                }
+
                 return;
             }
         }
         if (i == 2) {
             if (compMovimiento(fila, columna, c)) {
-                celdasJuego[fila][columna] = finall;
-                seguir(i, fila + 1, columna + 1, c);
-            } else if (compMovimiento(fila, columna, finall)) {
-                celdasJuego[fila - 1][columna - 1] = finall;
+                XposInic.add(fila);
+                YposInic.add(columna);
+                voltearDemasFichas(i, fila - 1, columna + 1, c, finall, XposInic, YposInic);
+            } else if (compMovimiento(fila, columna, finall) && celdasJuego[fila + 1][columna - 1] == c) {
+                for (int x = 0; x < XposInic.size(); x++) {
+                    int xp = (int) XposInic.get(x);
+                    int yp = (int) (YposInic.get(x));
+                    celdasJuego[xp][yp] = finall;
+                }
                 return;
             }
         }
         if (i == 3) {
             if (compMovimiento(fila, columna, c)) {
-                celdasJuego[fila][columna] = finall;
-                seguir(i, fila, columna -= 1, c);
+                XposInic.add(fila);
+                YposInic.add(columna);
+                voltearDemasFichas(i, fila, columna - 1, c, finall, XposInic, YposInic);
                 return;
-            } else if (compMovimiento(fila, columna, finall)&&celdasJuego[fila][columna+1]==finall) {
-                celdasJuego[fila][columna] = finall;
+            } else if (compMovimiento(fila, columna, finall) && celdasJuego[fila][columna + 1] == c) {
+                for (int x = 0; x < XposInic.size(); x++) {
+                    int xp = (int) XposInic.get(x);
+                    int yp = (int) (YposInic.get(x));
+                    celdasJuego[xp][yp] = finall;
+                }
+                return;
 
             }
         }
         if (i == 4) {
             if (celdasJuego[fila][columna] == c) {
-                celdasJuego[fila][columna] = finall;
-                seguir(i, fila, columna + 1, c);
+                XposInic.add(fila);
+                YposInic.add(columna);
+                voltearDemasFichas(i, fila, columna + 1, c, finall, XposInic, YposInic);
                 return;
-            } else if (celdasJuego[fila][columna] == finall) {
-                celdasJuego[fila][columna - 1] = finall;
+            } else if (celdasJuego[fila][columna] == finall && celdasJuego[fila][columna - 1] == c) {
+                for (int x = 0; x < XposInic.size(); x++) {
+                    int xp = (int) XposInic.get(x);
+                    int yp = (int) (YposInic.get(x));
+                    celdasJuego[xp][yp] = finall;
+                }
                 return;
             }
         }
 
         if (i == 5) {
             if (compMovimiento(fila, columna, c)) {
-                celdasJuego[fila][columna] = finall;
-                seguir(i, fila + 1, columna - 1, c);
-            } else if (compMovimiento(fila, columna, finall)) {
-                celdasJuego[fila - 1][columna + 1] = finall;
+                XposInic.add(fila);
+                YposInic.add(columna);
+                voltearDemasFichas(i, fila + 1, columna - 1, c, finall, XposInic, YposInic);
+            } else if (compMovimiento(fila, columna, finall) && celdasJuego[fila - 1][columna + 1] == c) {
+                for (int x = 0; x < XposInic.size(); x++) {
+                    int xp = (int) XposInic.get(x);
+                    int yp = (int) (YposInic.get(x));
+                    celdasJuego[xp][yp] = finall;
+                }
                 return;
             }
         }
         if (i == 6) {
             if (celdasJuego[fila][columna] == c) {
-                celdasJuego[fila][columna] = finall;
-                seguir(i, fila + 1, columna, c);
+                XposInic.add(fila);
+                YposInic.add(columna);
+                voltearDemasFichas(i, fila + 1, columna, c, finall, XposInic, YposInic);
                 return;
-            } else if (compMovimiento(fila, columna, finall)) {
-                celdasJuego[fila - 1][columna] = finall;
+            } else if (compMovimiento(fila, columna, finall) && celdasJuego[fila - 1][columna] == c) {
+                for (int x = 0; x < XposInic.size(); x++) {
+                    int xp = (int) XposInic.get(x);
+                    int yp = (int) (YposInic.get(x));
+                    celdasJuego[xp][yp] = finall;
+                }
                 return;
             }
         }
         if (i == 7) {
             if (compMovimiento(fila, columna, c)) {
-                celdasJuego[fila][columna] = finall;
-                seguir(i, fila + 1, columna + 1, c);
-            } else if (compMovimiento(fila, columna, finall)) {
-                celdasJuego[fila - 1][columna - 1] = finall;
+                XposInic.add(fila);
+                YposInic.add(columna);
+                voltearDemasFichas(i, fila + 1, columna + 1, c, finall, XposInic, YposInic);
+                return;
+
+            } else if (compMovimiento(fila, columna, finall) && celdasJuego[fila - 1][columna - 1] == c) {
+
+                for (int x = 0; x < XposInic.size(); x++) {
+                    int xp = (int) XposInic.get(x);
+                    int yp = (int) (YposInic.get(x));
+                    celdasJuego[xp][yp] = finall;
+                }
+
                 return;
             }
         }
@@ -382,21 +434,22 @@ public class Othelo {
 
     int contador;
 
-    public String preguntarNombre(int num){
+    public String preguntarNombre(int num) {
         String nombre = JOptionPane.showInputDialog(null, "¿Como podemos nombrar al jugador " + num + "?", "OTHELLO", JOptionPane.QUESTION_MESSAGE).toUpperCase();
         return nombre;
     }
+
     public void crearJugadores() {
         try {
             do {
                 j1.setNombre(preguntarNombre(1));
                 j2.setNombre(preguntarNombre(2));
-                if ("".equals(j1.getNombre()) || "".equals(j2.getNombre()) && j1.getNombre().length() > 8 || j2.getNombre().length() > 8 ) {
+                if ("".equals(j1.getNombre()) || "".equals(j2.getNombre()) && j1.getNombre().length() > 8 || j2.getNombre().length() > 8) {
                     JOptionPane.showMessageDialog(null, "No ha ingresado alguno de los dos nombres para el usuario o los nombres son demasiado largos. \nIntentelo de nuevo", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
                 j1.setFicha('X');
                 j2.setFicha('O');
-            } while ("".equals(j1.getNombre()) || "".equals(j2.getNombre()) && j1.getNombre().length() > 8 || j2.getNombre().length() > 8 );
+            } while ("".equals(j1.getNombre()) || "".equals(j2.getNombre()) && j1.getNombre().length() > 8 || j2.getNombre().length() > 8);
 
         } catch (Exception e) {
             System.out.println("Tratando -> No comentarios.");
