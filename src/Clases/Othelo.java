@@ -32,7 +32,7 @@ public class Othelo {
         return celdasJuego[i][j];
     }
 
-    public void setCeldasJuego(int i, int j, char guardar,char buscar) {
+    public void setCeldasJuego(int i, int j, char guardar) {
         this.celdasJuego[i][j] = guardar;
         this.adyacentesA(i, j, guardar);
         
