@@ -45,7 +45,7 @@ public class FrmOthello extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.ocultar();
-        this.crearMatriz(); 
+        this.crearMatriz();
         otelo.mostrar();
         turno = 1;
 
@@ -56,7 +56,7 @@ public class FrmOthello extends javax.swing.JFrame {
         lblNombre1.setText(otelo.j1.getNombre());
         lblNombreTurno.setText(otelo.j1.getNombre());
         lblNombre2.setText(otelo.j2.getNombre());
-        
+
     }
 
     public void ocultar() {
@@ -125,14 +125,6 @@ public class FrmOthello extends javax.swing.JFrame {
         //inicioJuego(0, 0);
     }
 
-//    public void Mortar() {
-//        for (int i = 0; i < 10; i++) {
-//            for (int j = 0; j < 10; j++) {
-//                System.out.println(boton[i][j].toString());
-//            }
-//
-//        }
-//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -386,7 +378,7 @@ public class FrmOthello extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             for (int i = 0; i < 12; i++) {
                 for (int j = 0; j < 12; j++) {
-                    if (e.getSource() == boton[i][j] && turno == 1&&otelo.getCeldasJuego(i, j)=='p') {
+                    if (e.getSource() == boton[i][j] && turno == 1 && otelo.getCeldasJuego(i, j) == 'p') {
 
                         otelo.setCeldasJuego(i, j, 'X');
                         otelo.clean();
@@ -421,19 +413,10 @@ public class FrmOthello extends javax.swing.JFrame {
 
                         System.out.println("");
                         otelo.mostrar();
-                        turno=2;
+                        turno = 2;
+                        contarFichas();//cuenta fichas
 
-//solo es prueba de los contadores de fichas 
-/*
-                    if (e.getSource() == boton[i][j]) {
-                        otelo.setCeldasJuego(i, j, 'O');
-                        lblContadorCantidad1.setText(String.valueOf(fichasJ2 += 1));
-                    } else {
-                        lblContadorCantidad2.setText(String.valueOf(fichasJ1 += 1));
-                    }
-                         */
-                    }
-                    else if (e.getSource() == boton[i][j] && turno == 2&&otelo.getCeldasJuego(i, j)=='p') {
+                    } else if (e.getSource() == boton[i][j] && turno == 2 && otelo.getCeldasJuego(i, j) == 'p') {
                         turno = 1;
                         otelo.setCeldasJuego(i, j, 'O');
                         otelo.clean();
@@ -469,20 +452,34 @@ public class FrmOthello extends javax.swing.JFrame {
 
                         System.out.println("");
                         otelo.mostrar();
+                        contarFichas();//cuenta fichas
 
-//solo es prueba de los contadores de fichas 
-/*
-                    if (e.getSource() == boton[i][j]) {
-                        otelo.setCeldasJuego(i, j, 'O');
-                        lblContadorCantidad1.setText(String.valueOf(fichasJ2 += 1));
-                    } else {
-                        lblContadorCantidad2.setText(String.valueOf(fichasJ1 += 1));
-                    }
-                         */
                     }
 
                 }
 
+            }
+        }
+    }
+
+    /*
+    Metodo para contar las fichas rojas y negras total de cada jugador
+     */
+    public void contarFichas() {
+        int cont1 = 0;
+        int cont2 = 0;
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 12; j++) {
+                if (otelo.getCeldasJuego(i, j) == 'X') {
+                    cont1++;
+                    fichasJ1 = cont1;
+                    lblContadorCantidad1.setText(String.valueOf(fichasJ1));
+                }
+                if (otelo.getCeldasJuego(i, j) == 'O') {
+                    cont2++;
+                    fichasJ2 = cont2;
+                    lblContadorCantidad2.setText(String.valueOf(fichasJ2));
+                }
             }
         }
     }
