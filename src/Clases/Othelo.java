@@ -102,7 +102,7 @@ public class Othelo {
                 celdasJuego[fila][columna] = finall;
                 seguir(i, fila - 1, columna - 1, c);
             } else if (compMovimiento(fila, columna, finall)) {
-                celdasJuego[fila+1][columna+1] = finall;
+                celdasJuego[fila + 1][columna + 1] = finall;
                 return;
             }
         }
@@ -112,7 +112,7 @@ public class Othelo {
                 celdasJuego[fila][columna] = finall;
                 seguir(i, fila - 1, columna, c);
             } else if (compMovimiento(fila, columna, finall)) {
-                celdasJuego[fila+1][columna] = finall;
+                celdasJuego[fila + 1][columna] = finall;
                 return;
             }
         }
@@ -120,8 +120,8 @@ public class Othelo {
             if (compMovimiento(fila, columna, c)) {
                 celdasJuego[fila][columna] = finall;
                 seguir(i, fila + 1, columna + 1, c);
-            } else if (compMovimiento(fila, columna, finall) ) {
-                celdasJuego[fila-1][columna-1] = finall;
+            } else if (compMovimiento(fila, columna, finall)) {
+                celdasJuego[fila - 1][columna - 1] = finall;
                 return;
             }
         }
@@ -131,7 +131,7 @@ public class Othelo {
                 seguir(i, fila, columna - 1, c);
                 return;
             } else if (compMovimiento(fila, columna, finall)) {
-                celdasJuego[fila][columna+1] = finall;
+                celdasJuego[fila][columna + 1] = finall;
 
             }
         }
@@ -141,7 +141,7 @@ public class Othelo {
                 seguir(i, fila, columna + 1, c);
                 return;
             } else if (celdasJuego[fila][columna] == finall) {
-                celdasJuego[fila][columna-1] = finall;
+                celdasJuego[fila][columna - 1] = finall;
                 return;
             }
         }
@@ -151,7 +151,7 @@ public class Othelo {
                 celdasJuego[fila][columna] = finall;
                 seguir(i, fila + 1, columna - 1, c);
             } else if (compMovimiento(fila, columna, finall)) {
-                celdasJuego[fila-1][columna+1] = finall;
+                celdasJuego[fila - 1][columna + 1] = finall;
                 return;
             }
         }
@@ -161,7 +161,7 @@ public class Othelo {
                 seguir(i, fila + 1, columna, c);
                 return;
             } else if (compMovimiento(fila, columna, finall)) {
-                celdasJuego[fila-1][columna] = finall;
+                celdasJuego[fila - 1][columna] = finall;
                 return;
             }
         }
@@ -170,7 +170,7 @@ public class Othelo {
                 celdasJuego[fila][columna] = finall;
                 seguir(i, fila + 1, columna + 1, c);
             } else if (compMovimiento(fila, columna, finall)) {
-                celdasJuego[fila-1][columna-1] = finall;
+                celdasJuego[fila - 1][columna - 1] = finall;
                 return;
             }
         }
@@ -382,12 +382,22 @@ public class Othelo {
 
     int contador;
 
+    public String preguntarNombre(int num){
+        String nombre = JOptionPane.showInputDialog(null, "¿Como podemos nombrar al jugador " + num + "?", "OTHELLO", JOptionPane.QUESTION_MESSAGE).toUpperCase();
+        return nombre;
+    }
     public void crearJugadores() {
         try {
-            j1.setNombre(JOptionPane.showInputDialog(null, "¿Como podemos nombrar al jugador 1?", "OTHELLO", JOptionPane.QUESTION_MESSAGE).toUpperCase());
-            j2.setNombre(JOptionPane.showInputDialog(null, "¿Como podemos nombrar al jugador 2?", "OTHELLO", JOptionPane.QUESTION_MESSAGE).toUpperCase());
-            j1.setFicha('X');
-            j2.setFicha('O');
+            do {
+                j1.setNombre(preguntarNombre(1));
+                j2.setNombre(preguntarNombre(2));
+                if ("".equals(j1.getNombre()) || "".equals(j2.getNombre()) && j1.getNombre().length() > 8 || j2.getNombre().length() > 8 ) {
+                    JOptionPane.showMessageDialog(null, "No ha ingresado alguno de los dos nombres para el usuario o los nombres son demasiado largos. \nIntentelo de nuevo", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+                j1.setFicha('X');
+                j2.setFicha('O');
+            } while ("".equals(j1.getNombre()) || "".equals(j2.getNombre()) && j1.getNombre().length() > 8 || j2.getNombre().length() > 8 );
+
         } catch (Exception e) {
             System.out.println("Tratando -> No comentarios.");
         }

@@ -21,6 +21,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
 /**
  *
@@ -37,6 +38,14 @@ public class FrmOthello extends javax.swing.JFrame {
     private int fichasJ1 = 2;//fichas jugador1
     private int fichasJ2 = 2;//fichas jugador2
     int turno;
+    ImageIcon iconobtn = new ImageIcon("src\\Imagenes\\ficha-de-casino1.png");
+    ImageIcon iconobtn1 = new ImageIcon("src\\Imagenes\\ficha-de-casino2.png");
+    ImageIcon iconobtn3 = new ImageIcon("src\\Imagenes\\posible.png");
+    ImageIcon iconobtn4 = new ImageIcon("src\\Imagenes\\posible2.png");
+    Icon icon1 = new ImageIcon(iconobtn.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+    Icon icon2 = new ImageIcon(iconobtn1.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+    Icon icon3 = new ImageIcon(iconobtn3.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+    Icon icon4 = new ImageIcon(iconobtn4.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
 
     /**
      * Creates new form FrmOthello
@@ -56,7 +65,11 @@ public class FrmOthello extends javax.swing.JFrame {
         lblNombre1.setText(otelo.j1.getNombre());
         lblNombreTurno.setText(otelo.j1.getNombre());
         lblNombre2.setText(otelo.j2.getNombre());
-
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 12; j++) {
+                boton[i][j].setBackground(Color.BLACK);
+            }
+        }
     }
 
     public void ocultar() {
@@ -90,6 +103,8 @@ public class FrmOthello extends javax.swing.JFrame {
         int y = 10;
         int n = 0;
         boton = new JButton[fila][colum];
+        ImageIcon primerTurno = new ImageIcon("src\\Imagenes\\fichaNegra2.png");
+        Icon lblprimerTurno = new ImageIcon(primerTurno.getImage().getScaledInstance(38, 38, Image.SCALE_DEFAULT));
         for (int i = 0; i < fila; i++) {
             for (int j = 0; j < colum; j++) {
                 boton[i][j] = new JButton();
@@ -99,14 +114,8 @@ public class FrmOthello extends javax.swing.JFrame {
 
                 y += 57;
                 n += 1;
-                ImageIcon iconobtn = new ImageIcon("src\\Imagenes\\ficha-de-casino1.png");
-                ImageIcon iconobtn1 = new ImageIcon("src\\Imagenes\\ficha-de-casino2.png");
-                ImageIcon iconobtn2 = new ImageIcon("src\\Imagenes\\posible.png");
-                Icon icon3 = new ImageIcon(iconobtn2.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-
-                Icon icon1 = new ImageIcon(iconobtn.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-                Icon icon2 = new ImageIcon(iconobtn1.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-                lblFichaTurnoActual.setIcon(icon1);
+                //
+                lblFichaTurnoActual.setIcon(lblprimerTurno);
 
                 if (otelo.getCeldasJuego(i, j) == 'X') {
                     boton[i][j].setIcon(icon1);
@@ -189,13 +198,13 @@ public class FrmOthello extends javax.swing.JFrame {
         panelFondo.add(lblPatineta, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 480, 560));
 
         lblNombreTurno.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblNombreTurno.setForeground(new java.awt.Color(204, 204, 255));
+        lblNombreTurno.setForeground(new java.awt.Color(255, 255, 255));
         lblNombreTurno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         panelFondo.add(lblNombreTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 510, 70, 20));
 
         lblFichaTurnoActual.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblFichaTurnoActual.setForeground(new java.awt.Color(255, 255, 255));
-        lblFichaTurnoActual.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblFichaTurnoActual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFichaTurnoActual.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblFichaTurnoActual.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblFichaTurnoActual.setName(""); // NOI18N
@@ -203,30 +212,32 @@ public class FrmOthello extends javax.swing.JFrame {
 
         lblTurno.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         lblTurno.setForeground(new java.awt.Color(204, 204, 255));
-        lblTurno.setText(" TURNO");
+        lblTurno.setText(" TURNO PARA:");
         lblTurno.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblTurno.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblTurno.setName(""); // NOI18N
-        panelFondo.add(lblTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 480, 60, 28));
+        panelFondo.add(lblTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 480, 80, 28));
 
         lblContadorCantidad1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblContadorCantidad1.setForeground(new java.awt.Color(255, 255, 255));
+        lblContadorCantidad1.setText("2");
         lblContadorCantidad1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblContadorCantidad1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblContadorCantidad1.setName(""); // NOI18N
-        panelFondo.add(lblContadorCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 350, 60, 28));
+        panelFondo.add(lblContadorCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 358, 60, 20));
 
         lblContadorCantidad2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblContadorCantidad2.setForeground(new java.awt.Color(255, 255, 255));
+        lblContadorCantidad2.setText("2");
         lblContadorCantidad2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblContadorCantidad2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblContadorCantidad2.setName(""); // NOI18N
-        panelFondo.add(lblContadorCantidad2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 640, 60, 28));
+        panelFondo.add(lblContadorCantidad2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 650, 60, 10));
 
         lblContador2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblContador2.setForeground(new java.awt.Color(204, 204, 255));
         lblContador2.setText("FICHAS:");
-        panelFondo.add(lblContador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 650, 50, -1));
+        panelFondo.add(lblContador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 645, 50, 20));
 
         lblContador1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblContador1.setForeground(new java.awt.Color(204, 204, 255));
@@ -311,17 +322,12 @@ public class FrmOthello extends javax.swing.JFrame {
         lblMarcoTurno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/MarcoTurno.png"))); // NOI18N
         panelFondo.add(lblMarcoTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 470, 150, 100));
 
-        getContentPane().add(panelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -100, 1090, 840));
+        getContentPane().add(panelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -90, 1090, 840));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
   private void inicioJuego(int i, int j) {
-        ImageIcon iconobtn = new ImageIcon("src\\Imagenes\\ficha-de-casino1.png");
-        ImageIcon iconobtn1 = new ImageIcon("src\\Imagenes\\ficha-de-casino2.png");
-        ImageIcon iconobtn2 = new ImageIcon("src\\Imagenes\\posible.png");
-        Icon icon1 = new ImageIcon(iconobtn.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-        Icon icon2 = new ImageIcon(iconobtn1.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-        Icon icon3 = new ImageIcon(iconobtn2.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+///
 
         if (i < 12) {
             if (j < 12) {
@@ -387,25 +393,21 @@ public class FrmOthello extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+
             for (int i = 0; i < 12; i++) {
                 for (int j = 0; j < 12; j++) {
                     if (e.getSource() == boton[i][j] && turno == 1 && otelo.getCeldasJuego(i, j) == 'p') {
 
-                       otelo.setCeldasJuego(i, j, 'X','O');
+                        otelo.setCeldasJuego(i, j, 'X', 'O');
                         otelo.clean();
 
                         otelo.buscar('O', 'X');
-                        ImageIcon iconobtn = new ImageIcon("src\\Imagenes\\ficha-de-casino1.png");
-                        ImageIcon iconobtn1 = new ImageIcon("src\\Imagenes\\ficha-de-casino2.png");
-                        ImageIcon iconobtn2 = new ImageIcon("src\\Imagenes\\posible2.png");
-                        Icon icon1 = new ImageIcon(iconobtn.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-                        Icon icon2 = new ImageIcon(iconobtn1.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-                        Icon icon3 = new ImageIcon(iconobtn2.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+                        ///
 
                         for (int x = 0; x < 12; x++) {
                             for (int y = 0; y < 12; y++) {
                                 if (otelo.getCeldasJuego(x, y) == 'p') {
-                                    boton[x][y].setIcon(icon3);
+                                    boton[x][y].setIcon(icon4);
 
                                 }
                                 if (otelo.getCeldasJuego(x, y) == 'X') {
@@ -418,6 +420,7 @@ public class FrmOthello extends javax.swing.JFrame {
                                 }
                                 if (otelo.getCeldasJuego(x, y) == '.') {
                                     boton[x][y].setIcon(null);
+
                                 }
                             }
                         }
@@ -425,22 +428,17 @@ public class FrmOthello extends javax.swing.JFrame {
                         System.out.println("");
                         otelo.mostrar();
                         turno = 2;
-                        turnoJugador(turno, icon1, icon2);
+                        turnoJugador(turno);
                         contarFichas();//cuenta fichas
 
                     } else if (e.getSource() == boton[i][j] && turno == 2 && otelo.getCeldasJuego(i, j) == 'p') {
                         turno = 1;
-                        otelo.setCeldasJuego(i, j, 'O','X');
+                        otelo.setCeldasJuego(i, j, 'O', 'X');
                         otelo.clean();
 
                         otelo.buscar('X', 'O');
-                        ImageIcon iconobtn = new ImageIcon("src\\Imagenes\\ficha-de-casino1.png");
-                        ImageIcon iconobtn1 = new ImageIcon("src\\Imagenes\\ficha-de-casino2.png");
-                        ImageIcon iconobtn3 = new ImageIcon("src\\Imagenes\\posible.png");
-                        Icon icon1 = new ImageIcon(iconobtn.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-                        Icon icon2 = new ImageIcon(iconobtn1.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-                        Icon icon3 = new ImageIcon(iconobtn3.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-                        turnoJugador(turno, icon1, icon2);
+                        ///
+                        turnoJugador(turno);
                         for (int x = 0; x < 12; x++) {
                             for (int y = 0; y < 12; y++) {
                                 if (otelo.getCeldasJuego(x, y) == 'p') {
@@ -499,12 +497,16 @@ public class FrmOthello extends javax.swing.JFrame {
     /*
     metodo para mostrar el nombre y ficha de turno del hugador
      */
-    public void turnoJugador(int turno, Icon icon1, Icon icon2) {
+    public void turnoJugador(int turno) {
+        ImageIcon iconolbl = new ImageIcon("src\\Imagenes\\fichaNegra2.png");
+        ImageIcon iconolb2 = new ImageIcon("src\\Imagenes\\fichaRoja2.png");
+        Icon lblTurno1 = new ImageIcon(iconolbl.getImage().getScaledInstance(38, 38, Image.SCALE_DEFAULT));
+        Icon lblTurno2 = new ImageIcon(iconolb2.getImage().getScaledInstance(38, 38, Image.SCALE_DEFAULT));
         if (turno == 1) {
-            lblFichaTurnoActual.setIcon(icon1);
+            lblFichaTurnoActual.setIcon(lblTurno1);
             lblNombreTurno.setText(otelo.j1.getNombre());
         } else if (turno == 2) {
-            lblFichaTurnoActual.setIcon(icon2);
+            lblFichaTurnoActual.setIcon(lblTurno2);
             lblNombreTurno.setText(otelo.j2.getNombre());
         }
     }
@@ -523,16 +525,24 @@ public class FrmOthello extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmOthello.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmOthello.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmOthello.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmOthello.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmOthello.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmOthello.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmOthello.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmOthello.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
