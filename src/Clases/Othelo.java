@@ -17,17 +17,22 @@ public class Othelo {
     private int columnas = 12;
     private int filas = 12;
     char[][] celdasJuego = new char[filas][columnas];
+    char[][] celdasJuegocopia = new char[filas][columnas];
     public int[] xcor;
     public int[] ycor;
     public Jugador j1 = new Jugador();
     public Jugador j2 = new Jugador();
-    public int[] xPosibles = {0, 0, 0, 1, 1, 2, 2, 2};
-    public int[] yPosibles = {0, 1, 2, 0, 2, 0, 1, 2};
-    int xInicial;
-    int yInicial;
 
     public Othelo() {
         InicioJuego();
+    }
+
+    public char[][] getCeldasJuego() {
+        return celdasJuego;
+    }
+
+    public char[][] getCeldasJuegocopia() {
+        return celdasJuegocopia;
     }
 
     public char getCeldasJuego(int i, int j) {
@@ -125,7 +130,7 @@ public class Othelo {
                         voltearDemasFichas(tamañoA, i, fila - 1, columna, c, finall, XposInic, YposInic);
 
                     } else if (compMovimiento(fila, columna, finall)) {
-                       
+
                         for (int x = 0; x < XposInic.size(); x++) {
                             int xp = (int) XposInic.get(x);
                             int yp = (int) (YposInic.get(x));
@@ -165,8 +170,8 @@ public class Othelo {
 
                         return;
 
-                    }else{
-                    return;
+                    } else {
+                        return;
                     }
                 }
                 if (i == 4) {
@@ -206,7 +211,7 @@ public class Othelo {
                         XposInic.add(fila);
                         YposInic.add(columna);
                         voltearDemasFichas(tamañoA, i, fila + 1, columna, c, finall, XposInic, YposInic);
-return;
+                        return;
                     } else if (compMovimiento(fila, columna, finall)) {
                         System.out.println("opaa");
                         for (int x = 0; x < XposInic.size(); x++) {
@@ -533,7 +538,7 @@ return;
                     if (compMovimiento(fila, columna, c)) {
                         seguir(tamañoA, i, fila, columna + 1, c);
                         return;
-                    } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila, columna + 1, c)) {
+                    } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila, columna - 1, c)) {
                         celdasJuego[fila][columna] = 'p';
                         return;
                     }
@@ -542,7 +547,7 @@ return;
                 if (i == 5) {
                     if (compMovimiento(fila, columna, c)) {
                         seguir(tamañoA, i, fila + 1, columna - 1, c);
-                    } else if (compMovimiento(fila + 1, columna - 1, '.') && compMovimiento(fila - 1, columna + 1, c)) {
+                    } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila - 1, columna + 1, c)) {
                         celdasJuego[fila][columna] = 'p';
                         return;
                     }
@@ -725,23 +730,5 @@ return;
         } catch (Exception e) {
             System.out.println("Tratando -> No comentarios.");
         }
-
     }
-
-    public void mosta(int h, int k, char c) {
-        xInicial = h;
-        yInicial = k;
-
-        //buscarEspacios();
-        System.out.println("8 posiciones");
-        for (int i = 0; i < xcor.length; i++) {
-
-            System.out.print(xcor[i] + " ");
-            System.out.print(ycor[i] + " ");
-
-            System.out.println("");
-        }
-
-    }
-
 }
