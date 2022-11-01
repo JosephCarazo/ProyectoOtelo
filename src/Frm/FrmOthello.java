@@ -57,7 +57,7 @@ public class FrmOthello extends javax.swing.JFrame {
         this.crearMatriz();
         otelo.mostrar();
         turno = 1;
-
+        this.panelFondo.setBackground(Color.BLACK);
     }
 
     public void crearJugadres() {
@@ -117,12 +117,15 @@ public class FrmOthello extends javax.swing.JFrame {
                 //
                 lblFichaTurnoActual.setIcon(lblprimerTurno);
 
-                if (otelo.getCeldasJuego(i, j) == 'X') {
-                    boton[i][j].setIcon(icon1);
-                } else if (otelo.getCeldasJuego(i, j) == 'O') {
-                    boton[i][j].setIcon(icon2);
-                } else if (otelo.getCeldasJuego(i, j) == 'p') {
-                    boton[i][j].setIcon(icon3);
+                switch (otelo.getCeldasJuego(i, j)) {
+                    case 'X' ->
+                        boton[i][j].setIcon(icon1);
+                    case 'O' ->
+                        boton[i][j].setIcon(icon2);
+                    case 'p' ->
+                        boton[i][j].setIcon(icon3);
+                    default -> {
+                    }
                 }
                 boton[i][j].addActionListener(new Action());
                 panelMatriz.add(boton[i][j]);
@@ -147,9 +150,8 @@ public class FrmOthello extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelMatriz = new javax.swing.JPanel();
         panelFondo = new javax.swing.JPanel();
-        lblPatineta = new javax.swing.JLabel();
+        btnIniciar = new javax.swing.JButton();
         lblNombreTurno = new javax.swing.JLabel();
         lblFichaTurnoActual = new javax.swing.JLabel();
         lblTurno = new javax.swing.JLabel();
@@ -157,7 +159,6 @@ public class FrmOthello extends javax.swing.JFrame {
         lblContadorCantidad2 = new javax.swing.JLabel();
         lblContador2 = new javax.swing.JLabel();
         lblContador1 = new javax.swing.JLabel();
-        lblLetras = new javax.swing.JLabel();
         lblNombre1 = new javax.swing.JLabel();
         lblNombre2 = new javax.swing.JLabel();
         lblJugador1 = new javax.swing.JLabel();
@@ -168,34 +169,33 @@ public class FrmOthello extends javax.swing.JFrame {
         lblFichaN = new javax.swing.JLabel();
         lbl1 = new javax.swing.JLabel();
         lblFondo1 = new javax.swing.JLabel();
-        btnIniciar = new javax.swing.JButton();
         lblMarcoTurno = new javax.swing.JLabel();
+        lblLetras = new javax.swing.JLabel();
+        lblStart = new javax.swing.JLabel();
+        panelMatriz = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelMatriz.setBackground(new java.awt.Color(7, 8, 84));
-
-        javax.swing.GroupLayout panelMatrizLayout = new javax.swing.GroupLayout(panelMatriz);
-        panelMatriz.setLayout(panelMatrizLayout);
-        panelMatrizLayout.setHorizontalGroup(
-            panelMatrizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 710, Short.MAX_VALUE)
-        );
-        panelMatrizLayout.setVerticalGroup(
-            panelMatrizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 710, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(panelMatriz, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 32, 710, 710));
-
         panelFondo.setBackground(new java.awt.Color(7, 8, 84));
         panelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblPatineta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/GifInicio_2.gif"))); // NOI18N
-        lblPatineta.setText("jLabel2");
-        panelFondo.add(lblPatineta, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 480, 560));
+        btnIniciar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnIniciar.setForeground(new java.awt.Color(204, 204, 255));
+        btnIniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LetrasOthelloBtn.png"))); // NOI18N
+        btnIniciar.setText("TOCA ACÁ PARA INICIAR");
+        btnIniciar.setContentAreaFilled(false);
+        btnIniciar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnIniciar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LetrasOthelloBtn.png"))); // NOI18N
+        btnIniciar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LetrasOthelloBtn2.png"))); // NOI18N
+        btnIniciar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarActionPerformed(evt);
+            }
+        });
+        panelFondo.add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 460, 630, 290));
 
         lblNombreTurno.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblNombreTurno.setForeground(new java.awt.Color(255, 255, 255));
@@ -243,9 +243,6 @@ public class FrmOthello extends javax.swing.JFrame {
         lblContador1.setForeground(new java.awt.Color(204, 204, 255));
         lblContador1.setText("FICHAS:");
         panelFondo.add(lblContador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 360, 50, -1));
-
-        lblLetras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/OthelloLetras.png"))); // NOI18N
-        panelFondo.add(lblLetras, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 140, 220, 100));
 
         lblNombre1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblNombre1.setForeground(new java.awt.Color(255, 255, 255));
@@ -303,26 +300,31 @@ public class FrmOthello extends javax.swing.JFrame {
         lblFondo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Marco.png"))); // NOI18N
         panelFondo.add(lblFondo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 280, 300, 190));
 
-        btnIniciar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnIniciar.setForeground(new java.awt.Color(204, 204, 255));
-        btnIniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/OthelloLetras.png"))); // NOI18N
-        btnIniciar.setText("TOCA ACÁ PARA INICIAR");
-        btnIniciar.setContentAreaFilled(false);
-        btnIniciar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnIniciar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/OthelloLetras.png"))); // NOI18N
-        btnIniciar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/OthelloLetrasGrande.png"))); // NOI18N
-        btnIniciar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnIniciar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIniciarActionPerformed(evt);
-            }
-        });
-        panelFondo.add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 140, 280, 120));
-
         lblMarcoTurno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/MarcoTurno.png"))); // NOI18N
         panelFondo.add(lblMarcoTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 470, 150, 100));
 
-        getContentPane().add(panelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -90, 1090, 840));
+        lblLetras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/OthelloLetras.png"))); // NOI18N
+        panelFondo.add(lblLetras, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 140, 220, 100));
+
+        lblStart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/gifStart.gif"))); // NOI18N
+        panelFondo.add(lblStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 1080, -1));
+
+        panelMatriz.setBackground(new java.awt.Color(7, 8, 84));
+
+        javax.swing.GroupLayout panelMatrizLayout = new javax.swing.GroupLayout(panelMatriz);
+        panelMatriz.setLayout(panelMatrizLayout);
+        panelMatrizLayout.setHorizontalGroup(
+            panelMatrizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 700, Short.MAX_VALUE)
+        );
+        panelMatrizLayout.setVerticalGroup(
+            panelMatrizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 710, Short.MAX_VALUE)
+        );
+
+        panelFondo.add(panelMatriz, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 700, 710));
+
+        getContentPane().add(panelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -90, 1090, 830));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -374,7 +376,7 @@ public class FrmOthello extends javax.swing.JFrame {
         lblContador2.setVisible(true);
         lblContadorCantidad1.setVisible(true);//se agrega
         lblContadorCantidad2.setVisible(true);//se agrega
-        lblPatineta.setVisible(false);
+//        lblPatineta.setVisible(false);
         lblFichaTurnoActual.setVisible(true);
         lblNombreTurno.setVisible(true);
         lblMarcoTurno.setVisible(true);
@@ -386,6 +388,7 @@ public class FrmOthello extends javax.swing.JFrame {
         } catch (Exception e) {
         }
         this.crearJugadres();
+
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     ///ESTO SIRVE PARA CUANDO SE TOQUE CUALQUIER BOTON SE REALICE UNA ACCION
@@ -552,15 +555,6 @@ public class FrmOthello extends javax.swing.JFrame {
             }
         });
     }
-
-    public void paint(Graphics g) {
-        super.paint(g);
-
-        g.setColor(Color.WHITE);
-        g.fillRoundRect(15, 51, 4, 800, 1, 1);
-        g.fillRoundRect(16, 51, 1048, 2, 1, 1);//Linea de arriba
-        g.fillRoundRect(1060, 51, 4, 788, 1, 1);
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciar;
     private javax.swing.JLabel lbl1;
@@ -581,7 +575,7 @@ public class FrmOthello extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombre1;
     private javax.swing.JLabel lblNombre2;
     private javax.swing.JLabel lblNombreTurno;
-    private javax.swing.JLabel lblPatineta;
+    private javax.swing.JLabel lblStart;
     private javax.swing.JLabel lblTurno;
     private javax.swing.JPanel panelFondo;
     public javax.swing.JPanel panelMatriz;
