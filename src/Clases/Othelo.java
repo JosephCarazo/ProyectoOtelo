@@ -565,13 +565,139 @@ public class Othelo {
             case 5:
                 if (fila <= 11 && fila >= 0 && columna == 0) {
                     if (i == 0) {
-                        seguir(tamañoA, 1, fila, columna, c);
+                        seguir(8, 1, fila, columna, c);
+                    }
+                    if (i == 1) {
+                        seguir(8, 2, fila, columna, c);
+
                     }
                     if (i == 2) {
-                        seguir(tamañoA, 2, fila, columna, c);
+                        seguir(8, 4, fila, columna, c);
+
+                    }
+                    if (i == 3) {
+                        seguir(8, 6, fila, columna, c);
+
+                    }
+
+                    if (i == 4) {
+                        seguir(8, 7, fila, columna, c);
 
                     }
                 }
+                if (fila == 11 && columna >= 0 && columna <= 11) {
+                    if (i == 0) {
+                        seguir(8, 0, fila, columna, c);
+                    }
+                    if (i == 1) {
+                        seguir(8, 1, fila, columna, c);
+
+                    }
+                    if (i == 2) {
+                        seguir(8, 2, fila, columna, c);
+
+                    }
+                    if (i == 3) {
+                        seguir(8, 3, fila, columna, c);
+
+                    }
+                    if (i == 4) {
+                        seguir(8, 4, fila, columna, c);
+
+                    }
+
+                }
+                if (fila == 0 && columna >= 0 && columna <= 11) {
+                    if (i == 0) {
+                        seguir(8, 3, fila, columna, c);
+                    }
+                    if (i == 1) {
+                        seguir(8, 4, fila, columna, c);
+
+                    }
+                    if (i == 2) {
+                        seguir(8, 5, fila, columna, c);
+
+                    }
+                    if (i == 3) {
+                        seguir(8, 6, fila, columna, c);
+
+                    }
+                    if (i == 4) {
+                        seguir(8, 7, fila, columna, c);
+
+                    }
+
+                }
+                if (fila <= 11 && fila >= 0 && columna == 11) {
+                    if (i == 0) {
+                        seguir(8, 0, fila, columna, c);
+                    }
+                    if (i == 1) {
+                        seguir(8, 1, fila, columna, c);
+
+                    }
+                    if (i == 2) {
+                        seguir(8, 3, fila, columna, c);
+
+                    }
+                    if (i == 3) {
+                        seguir(8, 5, fila, columna, c);
+
+                    }
+
+                    if (i == 4) {
+                        seguir(8, 6, fila, columna, c);
+
+                    }
+                }
+                break;
+            case 3:
+                if (fila == 0 && columna == 0) {
+                    if (i == 0) {
+                        seguir(8, 4, fila, columna, c);
+                    }
+                    if (i == 1) {
+                        seguir(8, 6, fila, columna, c);
+                    }
+                    if (i == 2) {
+                        seguir(8, 7, fila, columna, c);
+                    }
+                }
+                if (fila == 0 && columna == 11) {
+                    if (i == 0) {
+                        seguir(8, 3, fila, columna, c);
+                    }
+                    if (i == 1) {
+                        seguir(8, 5, fila, columna, c);
+                    }
+                    if (i == 2) {
+                        seguir(8, 6, fila, columna, c);
+                    }
+                }
+                if (fila == 11 && columna == 0) {
+                    if (i == 0) {
+                        seguir(8, 1, fila, columna, c);
+                    }
+                    if (i == 1) {
+                        seguir(8, 2, fila, columna, c);
+                    }
+                    if (i == 2) {
+                        seguir(8, 4, fila, columna, c);
+                    }
+                }
+                if (fila == 11 && columna == 11) {
+                    if (i == 0) {
+                        seguir(8, 0, fila, columna, c);
+                    }
+                    if (i == 1) {
+                        seguir(8, 1, fila, columna, c);
+                    }
+                    if (i == 2) {
+                        seguir(8, 4, fila, columna, c);
+                    }
+                }
+
         }
     }
 
