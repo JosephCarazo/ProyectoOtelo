@@ -125,7 +125,7 @@ public class Othelo {
                         voltearDemasFichas(tamañoA, i, fila - 1, columna, c, finall, XposInic, YposInic);
 
                     } else if (compMovimiento(fila, columna, finall)) {
-                        System.out.println("opaaaa");
+                       
                         for (int x = 0; x < XposInic.size(); x++) {
                             int xp = (int) XposInic.get(x);
                             int yp = (int) (YposInic.get(x));
@@ -200,12 +200,13 @@ public class Othelo {
                     }
                 }
                 if (i == 6) {
-                    if (compMovimiento(fila, columna, c) && compMovimiento(fila + 1, columna, c) || compMovimiento(fila + 1, columna, c)) {
+                    if (compMovimiento(fila, columna, c) && compMovimiento(fila + 1, columna, c) || compMovimiento(fila + 1, columna, finall)) {
                         XposInic.add(fila);
                         YposInic.add(columna);
                         voltearDemasFichas(tamañoA, i, fila + 1, columna, c, finall, XposInic, YposInic);
-
+return;
                     } else if (compMovimiento(fila, columna, finall)) {
+                        System.out.println("opaa");
                         for (int x = 0; x < XposInic.size(); x++) {
                             int xp = (int) XposInic.get(x);
                             int yp = (int) YposInic.get(x);
