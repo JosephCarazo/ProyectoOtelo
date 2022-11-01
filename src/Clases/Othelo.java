@@ -165,6 +165,8 @@ public class Othelo {
 
                         return;
 
+                    }else{
+                    return;
                     }
                 }
                 if (i == 4) {
