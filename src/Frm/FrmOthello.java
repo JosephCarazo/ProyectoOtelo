@@ -604,7 +604,7 @@ public class FrmOthello extends javax.swing.JFrame {
         } else if (fNegras < fRojas) {
             JOptionPane.showMessageDialog(null, "El ganador es " + otelo.j2.getNombre() + "  con: [" + fRojas + "] fichas", "Ganador", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "Es un empate ambos jugadores tienen: [" + fNegras + "]  [" + fRojas + "] fichas", "Empate", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ambos jugadores tienen: [" + fNegras + "]  [" + fRojas + "] fichas", "Empate", JOptionPane.INFORMATION_MESSAGE);
 
         }
     }
