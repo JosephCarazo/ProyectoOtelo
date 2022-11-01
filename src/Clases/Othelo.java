@@ -122,7 +122,7 @@ public class Othelo {
                     if (compMovimiento(fila, columna, c) && compMovimiento(fila - 1, columna, c) || compMovimiento(fila - 1, columna, finall)) {
                         XposInic.add(fila);
                         YposInic.add(columna);
-                        voltearDemasFichas(tamañoA, i, fila -= 1, columna, c, finall, XposInic, YposInic);
+                        voltearDemasFichas(tamañoA, i, fila -1, columna, c, finall, XposInic, YposInic);
 
                     } else if (compMovimiento(fila, columna, finall)) {
                         System.out.println("opaaaa");
@@ -139,7 +139,7 @@ public class Othelo {
                     if (compMovimiento(fila, columna, c) && compMovimiento(fila - 1, columna + 1, c) || compMovimiento(fila - 1, columna + 1, finall)) {
                         XposInic.add(fila);
                         YposInic.add(columna);
-                        voltearDemasFichas(tamañoA, i, fila -= 1, columna += 1, c, finall, XposInic, YposInic);
+                        voltearDemasFichas(tamañoA, i, fila - 1, columna + 1, c, finall, XposInic, YposInic);
                     } else if (compMovimiento(fila, columna, finall)) {
                         for (int x = 0; x < XposInic.size(); x++) {
                             int xp = (int) XposInic.get(x);
@@ -154,7 +154,7 @@ public class Othelo {
                     if (compMovimiento(fila, columna, c) && compMovimiento(fila, columna - 1, c) || compMovimiento(fila, columna - 1, finall)) {
                         XposInic.add(fila);
                         YposInic.add(columna);
-                        voltearDemasFichas(tamañoA, i, fila, columna -= 1, c, finall, XposInic, YposInic);
+                        voltearDemasFichas(tamañoA, i, fila, columna - 1, c, finall, XposInic, YposInic);
 
                     } else if (compMovimiento(fila, columna, finall)) {
                         for (int x = 0; x < XposInic.size(); x++) {
@@ -171,7 +171,7 @@ public class Othelo {
                     if (compMovimiento(fila, columna, c) && compMovimiento(fila, columna + 1, c) || compMovimiento(fila, columna + 1, finall)) {
                         XposInic.add(fila);
                         YposInic.add(columna);
-                        voltearDemasFichas(tamañoA, i, fila, columna += 1, c, finall, XposInic, YposInic);
+                        voltearDemasFichas(tamañoA, i, fila, columna + 1, c, finall, XposInic, YposInic);
 
                     } else if (celdasJuego[fila][columna] == finall) {
                         for (int x = 0; x < XposInic.size(); x++) {
@@ -187,7 +187,7 @@ public class Othelo {
                     if (compMovimiento(fila, columna, c) && compMovimiento(fila + 1, columna - 1, c) || compMovimiento(fila + 1, columna - 1, finall)) {
                         XposInic.add(fila);
                         YposInic.add(columna);
-                        voltearDemasFichas(tamañoA, i, fila += 1, columna -= 1, c, finall, XposInic, YposInic);
+                        voltearDemasFichas(tamañoA, i, fila +1, columna - 1, c, finall, XposInic, YposInic);
 
                     } else if (compMovimiento(fila, columna, finall)) {
                         for (int x = 0; x < XposInic.size(); x++) {
@@ -221,7 +221,7 @@ public class Othelo {
                     if (compMovimiento(fila, columna, c) && compMovimiento(fila + 1, columna + 1, c) || compMovimiento(fila + 1, columna + 1, finall)) {
                         XposInic.add(fila);
                         YposInic.add(columna);
-                        voltearDemasFichas(tamañoA, i, fila += 1, columna += 1, c, finall, XposInic, YposInic);
+                        voltearDemasFichas(tamañoA, i, fila + 1, columna + 1, c, finall, XposInic, YposInic);
 
                     } else if (compMovimiento(fila, columna, finall)) {
 
@@ -231,7 +231,7 @@ public class Othelo {
                             celdasJuego[xp][yp] = finall;
                         }
 
-                        return;
+                        
                     }
                 }
                 break;
@@ -528,10 +528,10 @@ public class Othelo {
                     }
                 }
                 if (i == 4) {
-                    if (celdasJuego[fila][columna] == c) {
+                    if (compMovimiento(fila, columna, c)) {
                         seguir(tamañoA, i, fila, columna + 1, c);
                         return;
-                    } else if (celdasJuego[fila][columna] == '.' && celdasJuego[fila][columna - 1] == c) {
+                    } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila, columna + 1, c)) {
                         celdasJuego[fila][columna] = 'p';
                         return;
                     }
@@ -546,7 +546,7 @@ public class Othelo {
                     }
                 }
                 if (i == 6) {
-                    if (celdasJuego[fila][columna] == c) {
+                    if (compMovimiento(fila, columna, c)) {
                         seguir(tamañoA, i, fila + 1, columna, c);
                     } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila - 1, columna, c)) {
                         celdasJuego[fila][columna] = 'p';

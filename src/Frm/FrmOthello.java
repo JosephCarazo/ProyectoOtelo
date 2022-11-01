@@ -21,6 +21,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 /**
@@ -172,6 +173,7 @@ public class FrmOthello extends javax.swing.JFrame {
         lblMarcoTurno = new javax.swing.JLabel();
         lblLetras = new javax.swing.JLabel();
         lblStart = new javax.swing.JLabel();
+        lblFondoEstatico = new javax.swing.JLabel();
         panelMatriz = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -309,7 +311,10 @@ public class FrmOthello extends javax.swing.JFrame {
         lblStart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/gifStart.gif"))); // NOI18N
         panelFondo.add(lblStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 1080, -1));
 
-        panelMatriz.setBackground(new java.awt.Color(7, 8, 84));
+        lblFondoEstatico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/StartImagen.gif"))); // NOI18N
+        panelFondo.add(lblFondoEstatico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 1080, 740));
+
+        panelMatriz.setBackground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout panelMatrizLayout = new javax.swing.GroupLayout(panelMatriz);
         panelMatriz.setLayout(panelMatrizLayout);
@@ -387,6 +392,8 @@ public class FrmOthello extends javax.swing.JFrame {
             clip.start();
         } catch (Exception e) {
         }
+        lblStart.setVisible(false);
+        lblFondoEstatico.setVisible(true);
         this.crearJugadres();
 
     }//GEN-LAST:event_btnIniciarActionPerformed
@@ -432,6 +439,8 @@ public class FrmOthello extends javax.swing.JFrame {
                         turno = 2;
                         turnoJugador(turno);
                         contarFichas();//cuenta fichas
+                        comprovarNoHayMovimiento();//si no hay movimientodice ganador
+                        ganador();
 
                     } else if (e.getSource() == boton[i][j] && turno == 2 && otelo.getCeldasJuego(i, j) == 'p') {
                         turno = 1;
@@ -465,6 +474,8 @@ public class FrmOthello extends javax.swing.JFrame {
                         System.out.println("");
                         otelo.mostrar();
                         contarFichas();//cuenta fichas
+                        comprovarNoHayMovimiento();//si no hay movimientodice ganador
+                        ganador();
 
                     }
 
@@ -510,6 +521,54 @@ public class FrmOthello extends javax.swing.JFrame {
         } else if (turno == 2) {
             lblFichaTurnoActual.setIcon(lblTurno2);
             lblNombreTurno.setText(otelo.j2.getNombre());
+        }
+    }/*
+    comprueba que hay espaciocios disponibles y dice ganador
+    */
+    public void comprovarNoHayMovimiento(){
+        int p=0;
+        int fNegras=Integer.parseInt(lblContadorCantidad1.getText());
+        int fRojas=Integer.parseInt(lblContadorCantidad2.getText());
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 12; j++) {
+                if(otelo.getCeldasJuego(i, j)=='p')
+                    p++;
+            }
+        }
+        if(p!=0){
+            
+        }else   if (fNegras > fRojas) {
+            JOptionPane.showMessageDialog(null, "El ganador es el jugador1  con : [" + fNegras + "] fichas", "Ganador", JOptionPane.INFORMATION_MESSAGE);
+        } else if (fNegras < fRojas) {
+            JOptionPane.showMessageDialog(null, "El ganador es el jugador2  con : [" + fRojas+ "] fichas", "Ganador", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+             JOptionPane.showMessageDialog(null,"Es un empate ambos jugadores tienen: [" + fNegras + "]  [" + fRojas + "] fichas","Empate", JOptionPane.INFORMATION_MESSAGE);
+        
+        }
+    }
+    /*
+    si el tablero esta totalmente lleno comprueba quien es el ganador
+    */
+    public void ganador() {
+        int cont = 0;
+        int fNegras=Integer.parseInt(lblContadorCantidad1.getText());
+        int fRojas=Integer.parseInt(lblContadorCantidad2.getText());
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 12; j++) {
+                if (otelo.getCeldasJuego(i, j) == '.') {
+                    cont++;
+                }
+            }
+        }
+        if (cont != 0) {
+            
+        } else if (fNegras > fRojas) {
+            JOptionPane.showMessageDialog(null, "El ganador es el jugador1  con : [" + fNegras + "] fichas", "Ganador", JOptionPane.INFORMATION_MESSAGE);
+        } else if (fNegras < fRojas) {
+            JOptionPane.showMessageDialog(null, "El ganador es el jugador2  con : [" + fRojas+ "] fichas", "Ganador", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+             JOptionPane.showMessageDialog(null,"Es un empate ambos jugadores tienen: [" + fNegras + "]  [" + fRojas + "] fichas","Empate", JOptionPane.INFORMATION_MESSAGE);
+            
         }
     }
 
@@ -568,6 +627,7 @@ public class FrmOthello extends javax.swing.JFrame {
     private javax.swing.JLabel lblFichaTurnoActual;
     private javax.swing.JLabel lblFondo1;
     private javax.swing.JLabel lblFondo2;
+    private javax.swing.JLabel lblFondoEstatico;
     private javax.swing.JLabel lblJugador1;
     private javax.swing.JLabel lblJugador2;
     private javax.swing.JLabel lblLetras;
