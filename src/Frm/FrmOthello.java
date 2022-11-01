@@ -600,9 +600,9 @@ public class FrmOthello extends javax.swing.JFrame {
         if (cont != 0) {
 
         } else if (fNegras > fRojas) {
-            JOptionPane.showMessageDialog(null, "El ganador es el jugador1  con : [" + fNegras + "] fichas", "Ganador", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El ganador es " + otelo.j1.getNombre() + "  con: [" + fNegras + "] fichas", "Ganador", JOptionPane.INFORMATION_MESSAGE);
         } else if (fNegras < fRojas) {
-            JOptionPane.showMessageDialog(null, "El ganador es el jugador2  con : [" + fRojas + "] fichas", "Ganador", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El ganador es " + otelo.j2.getNombre() + "  con: [" + fRojas + "] fichas", "Ganador", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "Es un empate ambos jugadores tienen: [" + fNegras + "]  [" + fRojas + "] fichas", "Empate", JOptionPane.INFORMATION_MESSAGE);
 
