@@ -173,6 +173,7 @@ public class FrmOthello extends javax.swing.JFrame {
         lblMarcoTurno = new javax.swing.JLabel();
         lblLetras = new javax.swing.JLabel();
         lblStart = new javax.swing.JLabel();
+        lblFondoEstatico = new javax.swing.JLabel();
         panelMatriz = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -310,7 +311,10 @@ public class FrmOthello extends javax.swing.JFrame {
         lblStart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/gifStart.gif"))); // NOI18N
         panelFondo.add(lblStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 1080, -1));
 
-        panelMatriz.setBackground(new java.awt.Color(7, 8, 84));
+        lblFondoEstatico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/StartImagen.gif"))); // NOI18N
+        panelFondo.add(lblFondoEstatico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 1080, 740));
+
+        panelMatriz.setBackground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout panelMatrizLayout = new javax.swing.GroupLayout(panelMatriz);
         panelMatriz.setLayout(panelMatrizLayout);
@@ -388,6 +392,8 @@ public class FrmOthello extends javax.swing.JFrame {
             clip.start();
         } catch (Exception e) {
         }
+        lblStart.setVisible(false);
+        lblFondoEstatico.setVisible(true);
         this.crearJugadres();
 
     }//GEN-LAST:event_btnIniciarActionPerformed
@@ -621,6 +627,7 @@ public class FrmOthello extends javax.swing.JFrame {
     private javax.swing.JLabel lblFichaTurnoActual;
     private javax.swing.JLabel lblFondo1;
     private javax.swing.JLabel lblFondo2;
+    private javax.swing.JLabel lblFondoEstatico;
     private javax.swing.JLabel lblJugador1;
     private javax.swing.JLabel lblJugador2;
     private javax.swing.JLabel lblLetras;
