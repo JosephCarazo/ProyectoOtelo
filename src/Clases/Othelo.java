@@ -85,147 +85,276 @@ public class Othelo {
             }
 
         }
-        ArrayList<Integer> Xpos = new ArrayList<Integer>();
-        ArrayList<Integer> Ypos = new ArrayList<Integer>();
+        ArrayList<Integer> Xpos = new ArrayList<>();
+        ArrayList<Integer> Ypos = new ArrayList<>();
         for (int i = 0; i < arrayFilas.length; i++) {
 
             if (compMovimiento(arrayFilas[i], arrayColumnas[i], contrario)) {
 
-                voltearDemasFichas(i, arrayFilas[i], arrayColumnas[i], contrario, finall, Xpos, Ypos);
+                voltearDemasFichas(arrayFilas.length, i, arrayFilas[i], arrayColumnas[i], contrario, finall, Xpos, Ypos);
 
             }
 
         }
     }
 
-    public void voltearDemasFichas(int i, int fila, int columna, char c, char finall, ArrayList XposInic, ArrayList YposInic) {
-        System.out.println(i);
-        if (i == 0) {
+    public void voltearDemasFichas(int tamañoA, int i, int fila, int columna, char c, char finall, ArrayList XposInic, ArrayList YposInic) {
+        switch (tamañoA) {
+            case 8:
+                if (i == 0) {
+                    if (compMovimiento(fila, columna, c) && compMovimiento(fila - 1, columna - 1, c) || compMovimiento(fila - 1, columna - 1, finall)) {
+                        XposInic.add(fila);
+                        YposInic.add(columna);
+                        voltearDemasFichas(tamañoA, i, fila - 1, columna - 1, c, finall, XposInic, YposInic);
 
-            if (compMovimiento(fila, columna, c)) {
-                XposInic.add(fila);
-                YposInic.add(columna);
-                voltearDemasFichas(i, fila - 1, columna - 1, c, finall, XposInic, YposInic);
-                return;
-            } else if (compMovimiento(fila, columna, finall) && celdasJuego[fila + 1][columna + 1] == c) {
-                for (int x = 0; x < XposInic.size(); x++) {
-                    int xp = (int) XposInic.get(x);
-                    int yp = (int) (YposInic.get(x));
-                    celdasJuego[xp][yp] = finall;
-                }
-                return;
-            }
-        }
+                    } else if (compMovimiento(fila, columna, finall)) {
+                        for (int x = 0; x < XposInic.size(); x++) {
+                            int xp = (int) XposInic.get(x);
+                            int yp = (int) YposInic.get(x);
+                            celdasJuego[xp][yp] = finall;
+                        }
 
-        if (i == 1) {
-            if (compMovimiento(fila, columna, c)) {
-                XposInic.add(fila);
-                YposInic.add(columna);
-                voltearDemasFichas(i, fila - 1, columna, c, finall, XposInic, YposInic);
-                return;
-            } else if (compMovimiento(fila, columna, finall) && celdasJuego[fila + 1][columna] == c) {
-                for (int x = 0; x < XposInic.size(); x++) {
-                    int xp = (int) XposInic.get(x);
-                    int yp = (int) (YposInic.get(x));
-                    celdasJuego[xp][yp] = finall;
+                        return;
+                    }
                 }
 
-                return;
-            }
-        }
-        if (i == 2) {
-            if (compMovimiento(fila, columna, c)) {
-                XposInic.add(fila);
-                YposInic.add(columna);
-                voltearDemasFichas(i, fila - 1, columna + 1, c, finall, XposInic, YposInic);
-            } else if (compMovimiento(fila, columna, finall) && celdasJuego[fila + 1][columna - 1] == c) {
-                for (int x = 0; x < XposInic.size(); x++) {
-                    int xp = (int) XposInic.get(x);
-                    int yp = (int) (YposInic.get(x));
-                    celdasJuego[xp][yp] = finall;
-                }
-                return;
-            }
-        }
-        if (i == 3) {
-            if (compMovimiento(fila, columna, c)) {
-                XposInic.add(fila);
-                YposInic.add(columna);
-                voltearDemasFichas(i, fila, columna - 1, c, finall, XposInic, YposInic);
-                return;
-            } else if (compMovimiento(fila, columna, finall) && celdasJuego[fila][columna + 1] == c) {
-                for (int x = 0; x < XposInic.size(); x++) {
-                    int xp = (int) XposInic.get(x);
-                    int yp = (int) (YposInic.get(x));
-                    celdasJuego[xp][yp] = finall;
-                }
-                return;
+                if (i == 1) {
+                    if (compMovimiento(fila, columna, c) && compMovimiento(fila - 1, columna, c) || compMovimiento(fila - 1, columna, finall)) {
+                        XposInic.add(fila);
+                        YposInic.add(columna);
+                        voltearDemasFichas(tamañoA, i, fila -= 1, columna, c, finall, XposInic, YposInic);
 
-            }
-        }
-        if (i == 4) {
-            if (celdasJuego[fila][columna] == c) {
-                XposInic.add(fila);
-                YposInic.add(columna);
-                voltearDemasFichas(i, fila, columna + 1, c, finall, XposInic, YposInic);
-                return;
-            } else if (celdasJuego[fila][columna] == finall && celdasJuego[fila][columna - 1] == c) {
-                for (int x = 0; x < XposInic.size(); x++) {
-                    int xp = (int) XposInic.get(x);
-                    int yp = (int) (YposInic.get(x));
-                    celdasJuego[xp][yp] = finall;
-                }
-                return;
-            }
-        }
+                    } else if (compMovimiento(fila, columna, finall)) {
+                        System.out.println("opaaaa");
+                        for (int x = 0; x < XposInic.size(); x++) {
+                            int xp = (int) XposInic.get(x);
+                            int yp = (int) (YposInic.get(x));
+                            celdasJuego[xp][yp] = finall;
+                        }
 
-        if (i == 5) {
-            if (compMovimiento(fila, columna, c)) {
-                XposInic.add(fila);
-                YposInic.add(columna);
-                voltearDemasFichas(i, fila + 1, columna - 1, c, finall, XposInic, YposInic);
-                return;
-            } else if (compMovimiento(fila, columna, finall) && celdasJuego[fila - 1][columna + 1] == c) {
-                for (int x = 0; x < XposInic.size(); x++) {
-                    int xp = (int) XposInic.get(x);
-                    int yp = (int) (YposInic.get(x));
-                    celdasJuego[xp][yp] = finall;
+                        return;
+                    }
                 }
-                return;
-            }
-        }
-        if (i == 6) {
-            if (celdasJuego[fila][columna] == c) {
-                XposInic.add(fila);
-                YposInic.add(columna);
-                voltearDemasFichas(i, fila + 1, columna, c, finall, XposInic, YposInic);
-                return;
-            } else if (compMovimiento(fila, columna, finall) && celdasJuego[fila - 1][columna] == c) {
-                for (int x = 0; x < XposInic.size(); x++) {
-                    int xp = (int) XposInic.get(x);
-                    int yp = (int) (YposInic.get(x));
-                    celdasJuego[xp][yp] = finall;
+                if (i == 2) {
+                    if (compMovimiento(fila, columna, c) && compMovimiento(fila - 1, columna + 1, c) || compMovimiento(fila - 1, columna + 1, finall)) {
+                        XposInic.add(fila);
+                        YposInic.add(columna);
+                        voltearDemasFichas(tamañoA, i, fila -= 1, columna += 1, c, finall, XposInic, YposInic);
+                    } else if (compMovimiento(fila, columna, finall)) {
+                        for (int x = 0; x < XposInic.size(); x++) {
+                            int xp = (int) XposInic.get(x);
+                            int yp = (int) (YposInic.get(x));
+                            celdasJuego[xp][yp] = finall;
+                        }
+
+                        return;
+                    }
                 }
-                return;
-            }
-        }
-        if (i == 7) {
-            if (compMovimiento(fila, columna, c)) {
-                XposInic.add(fila);
-                YposInic.add(columna);
-                voltearDemasFichas(i, fila + 1, columna + 1, c, finall, XposInic, YposInic);
-                return;
+                if (i == 3) {
+                    if (compMovimiento(fila, columna, c) && compMovimiento(fila, columna - 1, c) || compMovimiento(fila, columna - 1, finall)) {
+                        XposInic.add(fila);
+                        YposInic.add(columna);
+                        voltearDemasFichas(tamañoA, i, fila, columna -= 1, c, finall, XposInic, YposInic);
 
-            } else if (compMovimiento(fila, columna, finall) && celdasJuego[fila - 1][columna - 1] == c) {
+                    } else if (compMovimiento(fila, columna, finall)) {
+                        for (int x = 0; x < XposInic.size(); x++) {
+                            int xp = (int) XposInic.get(x);
+                            int yp = (int) (YposInic.get(x));
+                            celdasJuego[xp][yp] = finall;
+                        }
 
-                for (int x = 0; x < XposInic.size(); x++) {
-                    int xp = (int) XposInic.get(x);
-                    int yp = (int) (YposInic.get(x));
-                    celdasJuego[xp][yp] = finall;
+                        return;
+
+                    }
+                }
+                if (i == 4) {
+                    if (compMovimiento(fila, columna, c) && compMovimiento(fila, columna + 1, c) || compMovimiento(fila, columna + 1, finall)) {
+                        XposInic.add(fila);
+                        YposInic.add(columna);
+                        voltearDemasFichas(tamañoA, i, fila, columna += 1, c, finall, XposInic, YposInic);
+
+                    } else if (celdasJuego[fila][columna] == finall) {
+                        for (int x = 0; x < XposInic.size(); x++) {
+                            int xp = (int) XposInic.get(x);
+                            int yp = (int) (YposInic.get(x));
+                            celdasJuego[xp][yp] = finall;
+                        }
+                        return;
+                    }
                 }
 
-                return;
-            }
+                if (i == 5) {
+                    if (compMovimiento(fila, columna, c) && compMovimiento(fila + 1, columna - 1, c) || compMovimiento(fila + 1, columna - 1, finall)) {
+                        XposInic.add(fila);
+                        YposInic.add(columna);
+                        voltearDemasFichas(tamañoA, i, fila += 1, columna -= 1, c, finall, XposInic, YposInic);
+
+                    } else if (compMovimiento(fila, columna, finall)) {
+                        for (int x = 0; x < XposInic.size(); x++) {
+                            int xp = (int) XposInic.get(x);
+                            int yp = (int) (YposInic.get(x));
+                            celdasJuego[xp][yp] = finall;
+                        }
+
+                        return;
+                    }
+                }
+                if (i == 6) {
+                    if (compMovimiento(fila, columna, c) && compMovimiento(fila + 1, columna, c) || compMovimiento(fila + 1, columna, c)) {
+                        XposInic.add(fila);
+                        YposInic.add(columna);
+                        voltearDemasFichas(tamañoA, i, fila + 1, columna, c, finall, XposInic, YposInic);
+
+                    } else if (compMovimiento(fila, columna, finall)) {
+                        for (int x = 0; x < XposInic.size(); x++) {
+                            int xp = (int) XposInic.get(x);
+                            int yp = (int) YposInic.get(x);
+                            System.out.println(xp);
+                            System.out.println(yp);
+                            celdasJuego[xp][yp] = finall;
+                        }
+
+                        return;
+                    }
+                }
+                if (i == 7) {
+                    if (compMovimiento(fila, columna, c) && compMovimiento(fila + 1, columna + 1, c) || compMovimiento(fila + 1, columna + 1, finall)) {
+                        XposInic.add(fila);
+                        YposInic.add(columna);
+                        voltearDemasFichas(tamañoA, i, fila += 1, columna += 1, c, finall, XposInic, YposInic);
+
+                    } else if (compMovimiento(fila, columna, finall)) {
+
+                        for (int x = 0; x < XposInic.size(); x++) {
+                            int xp = (int) XposInic.get(x);
+                            int yp = (int) (YposInic.get(x));
+                            celdasJuego[xp][yp] = finall;
+                        }
+
+                        return;
+                    }
+                }
+                break;
+            case 5:
+
+                if (columna == 0 && fila <= 11 && fila >= 0) {  //LADO IZQUIERDO
+                    if (i == 0 && fila >= 0 && columna >= 0) {
+                        voltearDemasFichas(8, 1, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 1 && fila >= 0 && columna >= 0) {
+                        voltearDemasFichas(8, 2, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 2 && fila >= 0 && columna >= 0) {
+                        voltearDemasFichas(8, 4, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 3 && fila >= 0 && columna >= 0) {
+                        voltearDemasFichas(8, 6, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 4 && fila >= 0 && columna >= 0) {
+                        voltearDemasFichas(8, 7, fila, columna, c, finall, XposInic, YposInic);
+                    }
+
+                }
+                if (columna == 11 && fila <= 11 && fila >= 0) { //LADO DERECHO
+                    if (i == 0 && fila <= 11 && columna <= 11) {
+                        voltearDemasFichas(8, 0, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 1 && fila <= 11 && columna <= 11) {
+                        voltearDemasFichas(8, 1, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 2 && fila <= 11 && columna <= 11) {
+                        voltearDemasFichas(8, 3, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 3 && fila <= 11 && columna <= 11) {
+                        voltearDemasFichas(8, 5, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 4 && fila <= 11 && columna <= 11) {
+                        voltearDemasFichas(8, 6, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                }
+                if (fila == 11 && columna >= 0 && columna <= 11) {//LADO ABAJO
+                    if (i == 0 && fila <= 11 && columna <= 11) {
+                        voltearDemasFichas(8, 0, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 1 && fila <= 11 && columna <= 11) {
+                        voltearDemasFichas(8, 1, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 2 && fila <= 11 && columna <= 11) {
+                        voltearDemasFichas(8, 2, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 3 && fila <= 11 && columna <= 11) {
+                        voltearDemasFichas(8, 3, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 4 && fila <= 11 && columna <= 11) {
+                        voltearDemasFichas(8, 4, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                }
+                if (fila == 0 && columna >= 0 && columna <= 11) {//LADO ARRIBA
+                    if (i == 0 && fila <= 11 && columna <= 11) {
+                        voltearDemasFichas(8, 3, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 1 && fila <= 11 && columna <= 11) {
+                        voltearDemasFichas(8, 4, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 2 && fila <= 11 && columna <= 11) {
+                        voltearDemasFichas(8, 5, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 3 && fila <= 11 && columna <= 11) {
+                        voltearDemasFichas(8, 6, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 4 && fila <= 11 && columna <= 11) {
+                        voltearDemasFichas(8, 7, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                }
+                break;
+            case 3: ///ESQUINAS
+                if (fila == 0 && columna == 0) { //ESQUINA IZQUIERDA-ARRIBA
+                    if (i == 0) {
+                        voltearDemasFichas(8, 4, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 1) {
+                        voltearDemasFichas(8, 6, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 2) {
+                        voltearDemasFichas(8, 7, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                }
+                if (fila == 11 && columna == 0) {//ESQUINA IZQUIERDA-ABAJO
+                    if (i == 0) {
+                        voltearDemasFichas(8, 1, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 1) {
+                        voltearDemasFichas(8, 2, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 2) {
+                        voltearDemasFichas(8, 4, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                }
+                if (fila == 11 && columna == 11) { //ESQUINA DERECHA- ABAJO
+                    if (i == 0) {
+                        voltearDemasFichas(8, 0, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 1) {
+                        voltearDemasFichas(8, 1, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 2) {
+                        voltearDemasFichas(8, 3, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                }
+                if (fila == 0 && columna == 11) {//ESQUINA DERECHA-ARRIBA
+                    if (i == 0) {
+                        voltearDemasFichas(8, 3, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 1) {
+                        voltearDemasFichas(8, 5, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                    if (i == 2) {
+                        voltearDemasFichas(8, 6, fila, columna, c, finall, XposInic, YposInic);
+                    }
+                }
+
+                break;
+
         }
     }
 
@@ -340,7 +469,7 @@ public class Othelo {
         for (int i = 0; i < arrayFilas.length; i++) {
 
             if (compMovimiento(arrayFilas[i], arrayColumnas[i], contrario)) {
-                seguir(i, arrayFilas[i], arrayColumnas[i], contrario);
+                seguir(arrayFilas.length, i, arrayFilas[i], arrayColumnas[i], contrario);
 
             }
 
@@ -360,76 +489,89 @@ public class Othelo {
 
     // this.xcor = arrayFilas;
     // this.ycor = arrayColumnas;
-    public void seguir(int i, int fila, int columna, char c) {
-        System.out.println(i);
-        if (i == 0) {
+    public void seguir(int tamañoA, int i, int fila, int columna, char c) {
+        switch (tamañoA) {
+            case 8:
+                if (i == 0) {
 
-            if (compMovimiento(fila, columna, c)) {
-                seguir(i, fila - 1, columna - 1, c);
-            } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila + 1, columna + 1, c)) {
-                celdasJuego[fila][columna] = 'p';
-                return;
-            }
-        }
+                    if (compMovimiento(fila, columna, c)) {
+                        seguir(tamañoA, i, fila - 1, columna - 1, c);
+                    } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila + 1, columna + 1, c)) {
+                        celdasJuego[fila][columna] = 'p';
+                        return;
+                    }
+                }
 
-        if (i == 1) {
-            if (compMovimiento(fila, columna, c)) {
-                seguir(i, fila - 1, columna, c);
-            } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila + 1, columna, c)) {
-                celdasJuego[fila][columna] = 'p';
-                return;
-            }
-        }
-        if (i == 2) {
-            if (compMovimiento(fila, columna, c)) {
-                seguir(i, fila -1, columna + 1, c);
-            } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila + 1, columna - 1, c)) {
-                celdasJuego[fila][columna] = 'p';
-                return;
-            }
-        }
-        if (i == 3) {
-            if (compMovimiento(fila, columna, c)) {
-                seguir(i, fila, columna - 1, c);
-                return;
-            } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila, columna + 1, c)) {
-                celdasJuego[fila][columna] = 'p';
+                if (i == 1) {
+                    if (compMovimiento(fila, columna, c)) {
+                        seguir(tamañoA, i, fila - 1, columna, c);
+                    } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila + 1, columna, c)) {
+                        celdasJuego[fila][columna] = 'p';
+                        return;
+                    }
+                }
+                if (i == 2) {
+                    if (compMovimiento(fila, columna, c)) {
+                        seguir(tamañoA, i, fila - 1, columna + 1, c);
+                    } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila + 1, columna - 1, c)) {
+                        celdasJuego[fila][columna] = 'p';
+                        return;
+                    }
+                }
+                if (i == 3) {
+                    if (compMovimiento(fila, columna, c)) {
+                        seguir(tamañoA, i, fila, columna - 1, c);
+                        return;
+                    } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila, columna + 1, c)) {
+                        celdasJuego[fila][columna] = 'p';
 
-            }
-        }
-        if (i == 4) {
-            if (celdasJuego[fila][columna] == c) {
-                seguir(i, fila, columna + 1, c);
-                return;
-            } else if (celdasJuego[fila][columna] == '.' && celdasJuego[fila][columna - 1] == c) {
-                celdasJuego[fila][columna] = 'p';
-                return;
-            }
-        }
+                    }
+                }
+                if (i == 4) {
+                    if (celdasJuego[fila][columna] == c) {
+                        seguir(tamañoA, i, fila, columna + 1, c);
+                        return;
+                    } else if (celdasJuego[fila][columna] == '.' && celdasJuego[fila][columna - 1] == c) {
+                        celdasJuego[fila][columna] = 'p';
+                        return;
+                    }
+                }
 
-        if (i == 5) {
-            if (compMovimiento(fila + 1, columna - 1, c)) {
-                seguir(i, fila + 1, columna - 1, c);
-            } else if (compMovimiento(fila + 1, columna - 1, '.') && compMovimiento(fila - 1, columna + 1, c)) {
-                celdasJuego[fila][columna] = 'p';
-                return;
-            }
-        }
-        if (i == 6) {
-            if (celdasJuego[fila][columna] == c) {
-                seguir(i, fila + 1, columna, c);
-            } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila - 1, columna, c)) {
-                celdasJuego[fila][columna] = 'p';
-                return;
-            }
-        }
-        if (i == 7) {
-            if (compMovimiento(fila + 1, columna + 1, c)) {
-                seguir(i, fila + 1, columna + 1, c);
-            } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila - 1, columna - 1, c)) {
-                celdasJuego[fila][columna] = 'p';
-                return;
-            }
+                if (i == 5) {
+                    if (compMovimiento(fila, columna, c)) {
+                        seguir(tamañoA, i, fila + 1, columna - 1, c);
+                    } else if (compMovimiento(fila + 1, columna - 1, '.') && compMovimiento(fila - 1, columna + 1, c)) {
+                        celdasJuego[fila][columna] = 'p';
+                        return;
+                    }
+                }
+                if (i == 6) {
+                    if (celdasJuego[fila][columna] == c) {
+                        seguir(tamañoA, i, fila + 1, columna, c);
+                    } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila - 1, columna, c)) {
+                        celdasJuego[fila][columna] = 'p';
+                        return;
+                    }
+                }
+                if (i == 7) {
+                    if (compMovimiento(fila, columna, c)) {
+                        seguir(tamañoA, i, fila + 1, columna + 1, c);
+                    } else if (compMovimiento(fila, columna, '.') && compMovimiento(fila - 1, columna - 1, c)) {
+                        celdasJuego[fila][columna] = 'p';
+                        return;
+                    }
+                }
+                break;
+            case 5:
+                if (fila <= 11 && fila >= 0 && columna == 0) {
+                    if (i == 0) {
+                        seguir(tamañoA, 1, fila, columna, c);
+                    }
+                    if (i == 2) {
+                        seguir(tamañoA, 2, fila, columna, c);
+
+                    }
+                }
         }
     }
 

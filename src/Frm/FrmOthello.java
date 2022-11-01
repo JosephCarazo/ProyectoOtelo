@@ -400,7 +400,6 @@ public class FrmOthello extends javax.swing.JFrame {
 
                         otelo.setCeldasJuego(i, j, 'X', 'O');
                         otelo.clean();
-
                         otelo.buscar('O', 'X');
                         ///
 
@@ -433,11 +432,11 @@ public class FrmOthello extends javax.swing.JFrame {
 
                     } else if (e.getSource() == boton[i][j] && turno == 2 && otelo.getCeldasJuego(i, j) == 'p') {
                         turno = 1;
+
                         otelo.setCeldasJuego(i, j, 'O', 'X');
                         otelo.clean();
-
                         otelo.buscar('X', 'O');
-                        ///
+
                         turnoJugador(turno);
                         for (int x = 0; x < 12; x++) {
                             for (int y = 0; y < 12; y++) {
