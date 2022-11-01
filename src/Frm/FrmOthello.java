@@ -524,35 +524,37 @@ public class FrmOthello extends javax.swing.JFrame {
         }
     }/*
     comprueba que hay espaciocios disponibles y dice ganador
-    */
-    public void comprovarNoHayMovimiento(){
-        int p=0;
-        int fNegras=Integer.parseInt(lblContadorCantidad1.getText());
-        int fRojas=Integer.parseInt(lblContadorCantidad2.getText());
+     */
+    public void comprovarNoHayMovimiento() {
+        int p = 0;
+        int fNegras = Integer.parseInt(lblContadorCantidad1.getText());
+        int fRojas = Integer.parseInt(lblContadorCantidad2.getText());
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < 12; j++) {
-                if(otelo.getCeldasJuego(i, j)=='p')
+                if (otelo.getCeldasJuego(i, j) == 'p') {
                     p++;
+                }
             }
         }
-        if(p!=0){
-            
-        }else   if (fNegras > fRojas) {
+        if (p != 0) {
+
+        } else if (fNegras > fRojas) {
             JOptionPane.showMessageDialog(null, "El ganador es el jugador1  con : [" + fNegras + "] fichas", "Ganador", JOptionPane.INFORMATION_MESSAGE);
         } else if (fNegras < fRojas) {
-            JOptionPane.showMessageDialog(null, "El ganador es el jugador2  con : [" + fRojas+ "] fichas", "Ganador", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El ganador es el jugador2  con : [" + fRojas + "] fichas", "Ganador", JOptionPane.INFORMATION_MESSAGE);
         } else {
-             JOptionPane.showMessageDialog(null,"Es un empate ambos jugadores tienen: [" + fNegras + "]  [" + fRojas + "] fichas","Empate", JOptionPane.INFORMATION_MESSAGE);
-        
+            JOptionPane.showMessageDialog(null, "Es un empate ambos jugadores tienen: [" + fNegras + "]  [" + fRojas + "] fichas", "Empate", JOptionPane.INFORMATION_MESSAGE);
+
         }
     }
+
     /*
     si el tablero esta totalmente lleno comprueba quien es el ganador
-    */
+     */
     public void ganador() {
         int cont = 0;
-        int fNegras=Integer.parseInt(lblContadorCantidad1.getText());
-        int fRojas=Integer.parseInt(lblContadorCantidad2.getText());
+        int fNegras = Integer.parseInt(lblContadorCantidad1.getText());
+        int fRojas = Integer.parseInt(lblContadorCantidad2.getText());
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < 12; j++) {
                 if (otelo.getCeldasJuego(i, j) == '.') {
@@ -561,14 +563,14 @@ public class FrmOthello extends javax.swing.JFrame {
             }
         }
         if (cont != 0) {
-            
+
         } else if (fNegras > fRojas) {
             JOptionPane.showMessageDialog(null, "El ganador es el jugador1  con : [" + fNegras + "] fichas", "Ganador", JOptionPane.INFORMATION_MESSAGE);
         } else if (fNegras < fRojas) {
-            JOptionPane.showMessageDialog(null, "El ganador es el jugador2  con : [" + fRojas+ "] fichas", "Ganador", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El ganador es el jugador2  con : [" + fRojas + "] fichas", "Ganador", JOptionPane.INFORMATION_MESSAGE);
         } else {
-             JOptionPane.showMessageDialog(null,"Es un empate ambos jugadores tienen: [" + fNegras + "]  [" + fRojas + "] fichas","Empate", JOptionPane.INFORMATION_MESSAGE);
-            
+            JOptionPane.showMessageDialog(null, "Es un empate ambos jugadores tienen: [" + fNegras + "]  [" + fRojas + "] fichas", "Empate", JOptionPane.INFORMATION_MESSAGE);
+
         }
     }
 
