@@ -29,7 +29,7 @@ import javax.swing.Timer;
  * @author Francisco
  */
 public class FrmOthello extends javax.swing.JFrame {
-    
+
     Clip clip;
     private int fila = 12;
     private int colum = 12;
@@ -60,7 +60,7 @@ public class FrmOthello extends javax.swing.JFrame {
         turno = 1;
         this.panelFondo.setBackground(Color.BLACK);
     }
-    
+
     public void crearJugadres() {
         otelo.crearJugadores();
         lblNombre1.setText(otelo.j1.getNombre());
@@ -72,7 +72,7 @@ public class FrmOthello extends javax.swing.JFrame {
             }
         }
     }
-    
+
     public void ocultar() {
         panelMatriz.setVisible(false);
         lblNombre1.setVisible(false);
@@ -99,7 +99,7 @@ public class FrmOthello extends javax.swing.JFrame {
         ImageIcon icono = new ImageIcon("src/Imagenes/Othellogame1.png");//pone el icono en la ventana
         this.setIconImage(icono.getImage());
     }
-    
+
     public void crearMatriz() {
         int x = 20;
         int y = 10;
@@ -113,12 +113,12 @@ public class FrmOthello extends javax.swing.JFrame {
                 boton[i][j].setBackground(Color.darkGray);
                 boton[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
                 boton[i][j].setBounds(y, x, 58, 58);
-                
+
                 y += 57;
                 n += 1;
                 //
                 lblFichaTurnoActual.setIcon(lblprimerTurno);
-                
+
                 switch (otelo.getCeldasJuego(i, j)) {
                     case 'X' ->
                         boton[i][j].setIcon(icon1);
@@ -131,7 +131,7 @@ public class FrmOthello extends javax.swing.JFrame {
                 }
                 boton[i][j].addActionListener(new Action());
                 panelMatriz.add(boton[i][j]);
-                
+
             }
             x += 57;
             y = 10;
@@ -383,9 +383,9 @@ public class FrmOthello extends javax.swing.JFrame {
                 j = 0;
                 inicioJuego(i += 1, j);
             }
-            
+
         }
-        
+
     }
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
@@ -435,14 +435,14 @@ public class FrmOthello extends javax.swing.JFrame {
 
     ///ESTO SIRVE PARA CUANDO SE TOQUE CUALQUIER BOTON SE REALICE UNA ACCION
     class Action implements ActionListener {
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            
+
             for (int i = 0; i < 12; i++) {
                 for (int j = 0; j < 12; j++) {
                     if (e.getSource() == boton[i][j] && turno == 1 && otelo.getCeldasJuego(i, j) == 'p') {
-                        
+
                         otelo.setCeldasJuego(i, j, 'X', 'O');
                         otelo.clean();
                         otelo.buscar('O', 'X');
@@ -452,23 +452,23 @@ public class FrmOthello extends javax.swing.JFrame {
                             for (int y = 0; y < 12; y++) {
                                 if (otelo.getCeldasJuego(x, y) == 'p') {
                                     boton[x][y].setIcon(icon4);
-                                    
+
                                 }
                                 if (otelo.getCeldasJuego(x, y) == 'X') {
                                     boton[x][y].setIcon(icon1);
-                                    
+
                                 }
                                 if (otelo.getCeldasJuego(x, y) == 'O') {
                                     boton[x][y].setIcon(icon2);
-                                    
+
                                 }
                                 if (otelo.getCeldasJuego(x, y) == '.') {
                                     boton[x][y].setIcon(null);
-                                    
+
                                 }
                             }
                         }
-                        
+
                         System.out.println("");
                         otelo.mostrar();
                         turno = 2;
@@ -476,46 +476,46 @@ public class FrmOthello extends javax.swing.JFrame {
                         contarFichas();//cuenta fichas
                         comprovarNoHayMovimiento();//si no hay movimientodice ganador
                         ganador();
-                        
+
                     } else if (e.getSource() == boton[i][j] && turno == 2 && otelo.getCeldasJuego(i, j) == 'p') {
                         turno = 1;
-                        
+
                         otelo.setCeldasJuego(i, j, 'O', 'X');
                         otelo.clean();
                         otelo.buscar('X', 'O');
-                        
+
                         turnoJugador(turno);
                         for (int x = 0; x < 12; x++) {
                             for (int y = 0; y < 12; y++) {
                                 if (otelo.getCeldasJuego(x, y) == 'p') {
                                     boton[x][y].setIcon(icon3);
-                                    
+
                                 }
                                 if (otelo.getCeldasJuego(x, y) == 'X') {
                                     boton[x][y].setIcon(icon1);
-                                    
+
                                 }
                                 if (otelo.getCeldasJuego(x, y) == 'O') {
                                     boton[x][y].setIcon(icon2);
-                                    
+
                                 }
                                 if (otelo.getCeldasJuego(x, y) == '.') {
                                     boton[x][y].setIcon(null);
-                                    
+
                                 }
                             }
                         }
-                        
+
                         System.out.println("");
                         otelo.mostrar();
                         contarFichas();//cuenta fichas
                         comprovarNoHayMovimiento();//si no hay movimientodice ganador
                         ganador();
-                        
+
                     }
-                    
+
                 }
-                
+
             }
         }
     }
@@ -574,11 +574,11 @@ public class FrmOthello extends javax.swing.JFrame {
         if (p != 0) {
 
         } else if (fNegras > fRojas) {
-            JOptionPane.showMessageDialog(null, "El ganador es el jugador1  con : [" + fNegras + "] fichas", "Ganador", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, otelo.j1.getNombre() + " ha ganado con " + fNegras + " fichas", "GANADOR", JOptionPane.INFORMATION_MESSAGE);
         } else if (fNegras < fRojas) {
-            JOptionPane.showMessageDialog(null, "El ganador es el jugador2  con : [" + fRojas + "] fichas", "Ganador", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, otelo.j1.getNombre() + " ha ganado con " + fNegras + " fichas", "GANADOR", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "Es un empate ambos jugadores tienen: [" + fNegras + "]  [" + fRojas + "] fichas", "Empate", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, fNegras + " fichas para ambos.", "EMPATE", JOptionPane.INFORMATION_MESSAGE);
 
         }
     }
@@ -600,11 +600,11 @@ public class FrmOthello extends javax.swing.JFrame {
         if (cont != 0) {
 
         } else if (fNegras > fRojas) {
-            JOptionPane.showMessageDialog(null, "El ganador es " + otelo.j1.getNombre() + "  con: [" + fNegras + "] fichas", "Ganador", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, otelo.j1.getNombre() + " ha ganado con " + fNegras + " fichas", "GANADOR", JOptionPane.INFORMATION_MESSAGE);
         } else if (fNegras < fRojas) {
-            JOptionPane.showMessageDialog(null, "El ganador es " + otelo.j2.getNombre() + "  con: [" + fRojas + "] fichas", "Ganador", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, otelo.j1.getNombre() + " ha ganado con " + fNegras + " fichas", "GANADOR", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "Ambos jugadores tienen: [" + fNegras + "]  [" + fRojas + "] fichas", "Empate", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, fNegras + " fichas para ambos.", "EMPATE", JOptionPane.INFORMATION_MESSAGE);
 
         }
     }
@@ -623,21 +623,21 @@ public class FrmOthello extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                    
+
                 }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(FrmOthello.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(FrmOthello.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(FrmOthello.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmOthello.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -671,7 +671,7 @@ public class FrmOthello extends javax.swing.JFrame {
     private javax.swing.JLabel lblJugador2;
     private javax.swing.JLabel lblLetras;
     private javax.swing.JLabel lblMarcoTurno;
-    private javax.swing.JLabel lblNombre1;
+    public javax.swing.JLabel lblNombre1;
     private javax.swing.JLabel lblNombre2;
     private javax.swing.JLabel lblNombreTurno;
     private javax.swing.JLabel lblStart;
