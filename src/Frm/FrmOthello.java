@@ -74,7 +74,6 @@ public class FrmOthello extends javax.swing.JFrame {
     }
     
     public void ocultar() {
-        btnCerrar.setVisible(false);
         panelMatriz.setVisible(false);
         lblNombre1.setVisible(false);
         lblNombre2.setVisible(false);
